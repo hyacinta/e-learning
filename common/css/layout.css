@@ -1,0 +1,84 @@
+/* 전체 공통 사용 */
+.flex--center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.positon--center {
+  position: absolute;
+  top: 4rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+/* layout */
+.wrap {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* header */
+.header {
+  padding-top: 0.8rem;
+  padding-right: 1.6rem;
+  padding-left: 1.6rem;
+}
+.header__logo {
+  order: 1;
+}
+
+/* main */
+.main {
+  width: var(--width);
+  height: var(--height);
+  overflow: hidden;
+}
+
+/* bookmark */
+.video__bookMark {
+  position: absolute;
+  top: 1.6rem;
+  right: 0;
+}
+.bookMark__btnOpen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+.bookMark__list {
+  padding: 1.6rem 5.6rem 0.8rem 1.6rem;
+}
+.bookMark__item {
+  margin-bottom: 0.8rem;
+}
+.bookMark__btnMoveTime::before {
+  margin-right: 0.8rem;
+}
+
+/* skip */
+.video__btnSkip {
+  position: absolute;
+  right: 1.6rem;
+  bottom: 1.6rem;
+}
+
+/* controller */
+.controller {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* nav */
+.nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 100vh;
+}

@@ -26,7 +26,6 @@
   --point2: #FF3D56;
   --point3: #E0FB2E;
   --point4: #79FB2E;
-  --gradient: #79FB2E;
   --error: #FF4343;
   --success: #3864FF;
   --dimd: rgba(0,0,0,0.6);
@@ -53,8 +52,8 @@
   --smallText: 1.4rem;
   --caption: 1.2rem;
   --overline: 1rem;
-  --width: 102.4rem;
-  --height: 57.6rem;
+  --width: 128rem;
+  --height: 72rem;
 }
 
 /* 전체 공통 사용 */
@@ -78,4 +77,14 @@ h1, h2, h3, h4, h5, h6 {
 
 input::placeholder {
   color: var(--text-disabled);
+}
+
+.wrap {
+  background: url("../images/wrap_bg1.png") no-repeat left bottom,
+              url("../images/wrap_bg2.png") no-repeat right top;
+}
+
+.main {
+  background: linear-gradient(134deg, #FBB02E 0%, #FEDF40 100%);
+  box-shadow: 0 0 1.6rem 0 rgba(0, 0, 0, 0.3);
 }

@@ -10,13 +10,13 @@
 </head>
 <body>
   <div class="wrap">
-    <header class="header flex--center">
+    <header class="header flex--between">
       <h1 class="header__logo">front-end Developer KIM KYU REE</h1>
       <h2 class="header__lesson">1. 자바스크립트의 배열</h2>
     </header>
     <main class="main video positon--center">
       <h3 class="a11yHidden">영상 콘텐츠 영역</h3>
-      <div class="video__bookMark">
+      <div class="video__bookMark open">
         <h4 class="a11yHidden">영상 북마크 영역</h4>
         <button type="button" class="bookMark__btnOpen">북마크</button>
         <ol class="bookMark__list">
@@ -26,26 +26,26 @@
           <li class="bookMark__item"><button type="button" class="bookMark__btnMoveTime" data-timesynk="4">북마크 4</button></li>
         </ol>
       </div>
-      <div class="video__btnSkip">SKIP</div>
-      <section class="controller flex--center">
+      <div class="video__btnSkip flex--center">SKIP</div>
+      <section class="controller flex--between">
         <h4 class="a11yHidden">컨트롤러</h4>
         <div class="controller__videoProgress progress">
           <div class="progress__bar"></div>
         </div>
         <button type="button" class="controller__btnPlay">재생</button>
         <button type="button" class="controller__btnReplay">다시보기</button>
-        <div class="controller__videoTime">
-          <p class="videoTime__current"></p>
-          <p class="videoTime__total"></p>
+        <div class="controller__videoTime flex--center">
+          <p class="videoTime__current flex--center">00:00</p>
+          <p class="videoTime__total">00:00</p>
         </div>
-        <div class="controller__volume">
+        <div class="controller__volume flex--center">
           <button type="button" class="controller__btnVolume">음소거</button>
-          <div class="controller__volumeProgress progress">
+          <div class="volume__progress progress">
             <div class="progress__bar"></div>
           </div>
         </div>
         <div class="controller__playRate">
-          <button type="button" class="controller__btnPlayRate">1.0</button>
+          <button type="button" class="playRate__btnOpen">1.0</button>
           <ul class="playRate__list">
             <li class="playRate__item"><button type="button" class="playRate__btnChangeRate" data-targetrate="1.0">1.0</button></li>
             <li class="playRate__item"><button type="button" class="playRate__btnChangeRate" data-targetrate="1.2">1.2</button></li>
@@ -54,12 +54,12 @@
             <li class="playRate__item"><button type="button" class="playRate__btnChangeRate" data-targetrate="2.0">2.0</button></li>
           </ul>
         </div>
-        <button type="button" class="controller__btnIndex">메뉴</button>
+        <button type="button" class="controller__btnIndex">INDEX</button>
         <button type="button" class="controller__btnInfo">학습도우미</button>
         <button type="button" class="controller__btnScript">스크립트</button>
         <button type="button" class="controller__btnFullscreen">전체 화면</button>
         <button type="button" class="controller__btnLock">컨트롤러 잠금</button>
-        <div class="controller__pageNation">
+        <div class="controller__pageNation flex--center">
           <button type="button" class="controller__btnPrevPage">이전 페이지 보기</button>
           <p class="pageNation__current">01</p>
           <p class="pageNation__total">04</p>

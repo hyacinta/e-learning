@@ -1,6 +1,11 @@
 /* 전체 공통 사용 */
 .flex--center {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex--between {
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -13,12 +18,32 @@
   margin: auto;
 }
 
+/* progress */
+.progress {
+  height: 0.8rem;
+}
+.progress__bar {
+  position: relative;
+  width: 0;
+  height: 100%;
+}
+.progress__bar::after {
+  content: "";
+  position: absolute;
+  top: -0.4rem;
+  right: -0.8rem;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+
 /* layout */
 .wrap {
   position: relative;
   width: 100vw;
   height: 100vh;
 }
+
 
 /* header */
 .header {
@@ -28,7 +53,12 @@
 }
 .header__logo {
   order: 1;
+  width: 20.6rem;
+  height: 4.4rem;
+  padding-top: 4.4rem;
+  overflow: hidden;
 }
+
 
 /* main */
 .main {
@@ -37,16 +67,25 @@
   overflow: hidden;
 }
 
+
 /* bookmark */
 .video__bookMark {
   position: absolute;
   top: 1.6rem;
   right: 0;
+  min-width: 3.6rem;
+  min-height: 10rem;
+  
+}
+.video__bookMark.open {
+  overflow: hidden;
 }
 .bookMark__btnOpen {
   position: absolute;
   top: 0;
   right: 0;
+  width: 3.6rem;
+  padding: 1.2rem 0.2rem;
   z-index: 10;
 }
 .bookMark__list {
@@ -59,18 +98,106 @@
   margin-right: 0.8rem;
 }
 
+
 /* skip */
 .video__btnSkip {
   position: absolute;
   right: 1.6rem;
   bottom: 1.6rem;
+  width: 10.4rem;
+  height: 10.4rem;
+  padding-top: 0.4rem;
+  padding-left: 0.2rem;
+}
+
+
+/* controller 공통 사용 */
+[class*="controller__"] {
+  margin-right: 0.8rem;
+}
+[class*="controller__btn"] {
+  width: 4rem;
+  height: 4rem;
+  padding-top: 4rem;
+  overflow: hidden;
 }
 
 /* controller */
 .controller {
-  position: fixed;
+  position: absolute;
   bottom: 0;
+  flex-wrap: wrap;
   width: 100%;
+  padding: 2.4rem 1.6rem 0.8rem;
+}
+.controller__videoProgress {
+  width: 100%;
+  margin-left: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+.controller__btnPlay {
+  margin-left: 0;
+}
+
+.controller__videoTime::after {
+  content: "";
+  position: relative;
+  top: 0.1rem;
+  display: block;
+  width: 0.1rem;
+  height: 1rem;
+  margin: 0 0.6rem;
+}
+.videoTime__total {
+  order: 1;
+}
+.volume__progress {
+  width: 4rem;
+}
+.controller__playRate {
+  position: relative;
+}
+.playRate__btnOpen {
+  height: 4rem;
+  padding: 0.2rem 1rem 0 2.6rem;
+}
+.playRate__btnChangeRate {
+  height: 2.4rem;
+  margin-bottom: 0.4rem;
+  padding: 0 0.4rem 0 2.2rem;
+}
+.playRate__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playRate__list {
+  /* display: none; */
+  position: absolute;
+  right: 0;
+  bottom: 4rem;
+  left: 0;
+  margin: auto;
+  padding: 0.8rem 0.4rem 0.4rem;
+  z-index: 10;
+}
+.controller__btnIndex {
+  margin-left: auto;
+}
+.controller__btnPrevPage, .controller__btnNextPage, .controller__pageNation {
+  margin-right: 0;
+}
+.controller__pageNation::after {
+  content: "";
+  position: relative;
+  top: -0.1rem;
+  display: block;
+  width: 0.1rem;
+  height: 1.6rem;
+  margin: 0 1.2rem;
+}
+.pageNation__total, .controller__btnNextPage {
+  order: 1;
 }
 
 /* nav */

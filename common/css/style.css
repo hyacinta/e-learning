@@ -35,6 +35,7 @@
   --medium-gray: #707070;
   --light-gray: #ddd;
   --border-gray: #ccc;
+  --btn-disabled: #e6e6e6;
   --text-primary: #202020;
   --text-secondary: #707070;
   --text-disabled: #b0b0b0;
@@ -78,6 +79,8 @@ input::placeholder {
   padding: 0;
   white-space: nowrap;
 }
+
+/* progress */
 .progress {
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 0.4rem;
@@ -92,13 +95,35 @@ input::placeholder {
   box-shadow: 0 0 0.8rem 0 rgba(0,0,0,0.6);
 }
 
+/* closed button */
+[class*="__btnClosed"] {
+  transition: transform 400ms ease;
+}
+[class*="__btnClosed"]:hover {
+  transform: rotate(180deg);
+}
+[class*="__btnClosed"]::before, [class*="__btnClosed"]::after {
+  background-color: var(--white);
+  box-shadow: 0 0 0.8rem 0 rgba(0, 0, 0, 0.4);
+}
+[class*="__btnClosed"]::before {
+  transform: rotate(45deg);
+}
+[class*="__btnClosed"]::after {
+  transform: rotate(-45deg);
+}
+[class*="__btnClosed"]:hover::before, [class*="__btnClosed"]:hover::after {
+  background-color: var(--point3);
+  box-shadow: 0 0 0.4rem 0 rgba(0, 0, 0, 1);
+}
+
+
 /* style */
 .wrap {
   font-family: 'Noto Sans KR', sans-serif;
   background: url("../images/wrap_bg1.png") no-repeat left bottom,
               url("../images/wrap_bg2.png") no-repeat right top;
 }
-
 
 /* header */
 .header__logo {
@@ -109,13 +134,11 @@ input::placeholder {
   color: var(--sub-deep);
 }
 
-
 /* main */
 .main {
   background: linear-gradient(134deg, var(--main) 0%, var(--main-light) 100%);
   box-shadow: 0 0 1.6rem 0 rgba(0, 0, 0, 0.3);
 }
-
 
 /* bookMark */
 .video__bookMark.open {
@@ -156,7 +179,6 @@ input::placeholder {
   font-size: var(--body);
 }
 
-
 /* skip */
 .video__btnSkip {
   font-family: 'NanumSquareRound';
@@ -175,7 +197,6 @@ input::placeholder {
   box-shadow: 0.2rem 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.5);
 }
 
-
 /* controller 공통사용 */
 [class*="controller__btn"] {
   background-repeat: no-repeat;
@@ -185,7 +206,6 @@ input::placeholder {
   font-weight: bold;
   color: var(--main-light);
 }
-
 /* controller */
 .controller {
   font-family: 'NanumSquareRound';
@@ -304,4 +324,61 @@ input::placeholder {
 }
 .controller__pageNation::after {
   background-color: rgba(255, 255, 255, 0.4);
+}
+
+.nav {
+  font-weight: bold;
+  color: var(--text-secondary);
+  background-color: var(--dimd);
+  backdrop-filter: blur(0.8rem);
+}
+.nav__list {
+  background-color: var(--white);
+  border: 0.2rem solid var(--point1);
+  border-radius: 1.2rem;
+  box-shadow: 0 0 1.6rem 0 rgba(0, 0, 0, 0.25);
+}
+.nav__itemTitle {
+  font-family: 'NanumSquareRound';
+  font-size: var(--title);
+  letter-spacing: 0.1em;
+  background-color: var(--btn-disabled);
+}
+.nav__itemWrap.active .nav__itemTitle {
+  color: var(--point3);
+  background-color: var(--point1);
+}
+.nav__subList {
+  width: 100%;
+}
+.nav__subLink {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.nav__subLink::before {
+  content: "";
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-right: 0.8rem;
+  background-color: var(--text-secondary);
+  transform: rotate(45deg);
+}
+.active .nav__subLink::before, .nav__subLink:hover::before {
+  background-color: var(--point1);
+}
+.active .nav__subLink, .nav__subLink:hover {
+  color: var(--point1);
+}
+
+/* script */
+.script {
+  font-size: var(--smallText);
+  color: var(--white);
+  border-radius: 1.2rem 1.2rem 0 0;
+  border: 0.2rem solid var(--point1);
+  border-bottom: none;
+  background-color: var(--dimd);
+  backdrop-filter: blur(0.8rem);
 }

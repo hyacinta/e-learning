@@ -1,0 +1,81 @@
+/* font 설정 */
+@font-face {
+  font-family: 'NanumSquareRound';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'D2Coding';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+
+/* 컬러 변수 및 영상 사이즈 설정 */
+:root {
+  --main: #FBB02E;
+  --main-light: #FEDF40;
+  --main-deep: #C18000;
+  --sub: #6F5831;
+  --sub-light: #BCAA92;
+  --sub-deep: #4A351A;
+  --point1: #8933FF;
+  --point2: #FF3D56;
+  --point3: #E0FB2E;
+  --point4: #79FB2E;
+  --gradient: #79FB2E;
+  --error: #FF4343;
+  --success: #3864FF;
+  --dimd: rgba(0,0,0,0.6);
+  --white: #fff;
+  --black: #000;
+  --dark-gray: #404040;
+  --medium-gray: #707070;
+  --light-gray: #ddd;
+  --border-gray: #ccc;
+  --text-primary: #202020;
+  --text-secondary: #707070;
+  --text-disabled: #b0b0b0;
+  --headlineXL: 12.4rem;
+  --headlineL: 10rem;
+  --headline1: 8rem;
+  --headline2: 6.4rem;
+  --headline3: 5.2rem;
+  --headline4: 4rem;
+  --headline5: 3.2rem;
+  --headline6: 2.4rem;
+  --title: 2rem;
+  --subTitle: 1.8rem;
+  --body: 1.6rem;
+  --smallText: 1.4rem;
+  --caption: 1.2rem;
+  --overline: 1rem;
+  --width: 102.4rem;
+  --height: 57.6rem;
+}
+
+/* 전체 공통 사용 */
+.a11yHidden {
+  overflow: hidden;
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  clip-path: circle(0);
+  width: 0.1rem;
+  height: 0.1rem;
+  margin: -0.1rem;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'NanumSquareRound';
+  color: var(--text-primary);
+}
+
+input::placeholder {
+  color: var(--text-disabled);
+}

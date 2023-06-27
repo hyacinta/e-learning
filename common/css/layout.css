@@ -9,6 +9,11 @@
   justify-content: space-between;
   align-items: center;
 }
+.flex--start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 .position--center {
   position: absolute;
   top: 4rem;
@@ -16,6 +21,9 @@
   bottom: 0;
   left: 0;
   margin: auto;
+  width: var(--width);
+  height: var(--height);
+  overflow: hidden;
 }
 .position--left {
   position: absolute;
@@ -42,7 +50,6 @@
   height: 100%;
 }
 .progress__bar::after {
-  content: "";
   position: absolute;
   top: -0.4rem;
   right: -0.8rem;
@@ -61,7 +68,6 @@
   overflow: hidden;
 }
 [class*="__btnClosed"]::before, [class*="__btnClosed"]::after {
-  content: "";
   position: absolute;
   top: 0;
   right: 0;
@@ -71,6 +77,13 @@
   width: 100%;
   height: 0.2rem;
   margin: auto;
+}
+
+/* box arrow pointer */
+[class*="arrow--"]::before {
+  position: absolute;
+  width: 0;
+  height: 0;
 }
 
 
@@ -92,13 +105,6 @@
   width: 20.6rem;
   height: 4.4rem;
   padding-top: 4.4rem;
-  overflow: hidden;
-}
-
-/* main */
-.main {
-  width: var(--width);
-  height: var(--height);
   overflow: hidden;
 }
 
@@ -142,7 +148,9 @@
   padding-top: 0.4rem;
   padding-left: 0.2rem;
 }
-
+.lock .video__btnSkip {
+  bottom: 10.4rem;
+}
 /* controller 공통 사용 */
 [class*="controller__"] {
   margin-right: 0.8rem;
@@ -170,7 +178,6 @@
   margin-left: 0;
 }
 .controller__videoTime::after {
-  content: "";
   position: relative;
   top: 0.1rem;
   display: block;
@@ -218,7 +225,6 @@
   margin-right: 0;
 }
 .controller__pageNation::after {
-  content: "";
   position: relative;
   top: -0.1rem;
   display: block;
@@ -257,6 +263,7 @@
 
 /* script */
 .script {
+  display: none;
   width: var(--width);
   height: 12.8rem;
   padding: 1.6rem 3.2rem 0.4rem 1.6rem;
@@ -275,4 +282,202 @@
   width: 2.4rem;
   height: 2.4rem;
   padding-top: 2.4rem;
+}
+
+/* help */
+.help {
+  display: flex;
+  flex-wrap: wrap;
+}
+/* help nav */
+.help__helpNav {
+  width: 100%;
+  padding: 2.4rem 1.6rem 0;
+}
+.helpNav__item {
+  margin-right: 0.4rem;
+}
+.helpNav__btnMovePage {
+  width: 16rem;
+  padding: 1.6rem 1.6rem 1.2rem;
+}
+/* help contents */
+.help__contentsWrap {
+  width: 100%;
+  height: calc(100% - 7.5rem);
+  padding: 4rem 10.4rem;
+}
+/* learningmap */
+.learningmap__list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  counter-reset: number 0;
+}
+.learningmap__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.8rem;
+}
+.learningmap__item::before {
+  counter-increment: number 1;
+  content: counter(number);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-right: 0.8rem;
+  padding-top: 0.4rem;
+  padding-right: 0.1rem;
+}
+/* pageview */
+.pageview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pageview__imgWrap {
+  position: relative;
+  width: 67.5rem;
+  height: 48rem;
+}
+[class*="pageview__btnTarget"] {
+  position: absolute;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding-top: 0.1rem;
+  padding-left: 0.1rem;
+}
+.pageview__btnTarget1 {
+  top: 0.6rem;
+  left: var(--btnPad);
+}
+.pageview__btnTarget2 {
+  top: 0.6rem;
+  right: var(--btnPad);
+}
+.pageview__btnTarget3 {
+  top: 10rem;
+  right: var(--btnPad);
+}
+.pageview__btnTarget4 {
+  right: 10.4rem;
+  bottom: var(--btnPad);
+}
+.pageview__btnTarget5 {
+  right: 20.8rem;
+  bottom: var(--btnPad);
+}
+.pageview__btnTarget6 {
+  bottom: 6.4rem;
+  left: var(--btnPad);
+}
+[class*="pageview__targetImg"] {
+  display: none;
+}
+[class*="pageview__btnTarget"]:hover + [class*="pageview__targetImg"] {
+  position: absolute;
+  display: block;
+}
+[class*="pageview__targetImg"]::after {
+  position: absolute;
+  display: inline-block;
+  width: auto;
+  padding: 0.3em 0.7em 0.3em;
+}
+.pageview__targetImg1 {
+  top: 0.7rem;
+  left: 0.7rem;
+  width: 10rem;
+  height: 2rem;
+}
+.pageview__targetImg1::after {
+  top: -0.1rem;
+  right: -10rem;
+}
+.pageview__targetImg1::before {
+  top: 0;
+  right: -1.2rem;
+  bottom: 0;
+  margin: auto;
+}
+.pageview__targetImg2 {
+  top: 0.6rem;
+  right: 0.2em;
+  width: 10rem;
+  height: 2.4rem;
+}
+.pageview__targetImg2::after {
+  top: 0.1rem;
+  left: -10rem;
+}
+.pageview__targetImg2::before {
+  top: 0;
+  left: -1.2rem;
+  bottom: 0;
+  margin: auto;
+}
+.pageview__targetImg3 {
+  top: 9rem;
+  right: 3.8rem;
+  width: 13rem;
+  height: 6rem;
+}
+.pageview__targetImg3::after {
+  top: 7.2rem;
+}
+.pageview__targetImg3::before {
+  top: 6rem;
+  left: 0.8rem;
+}
+.pageview__targetImg4 {
+  bottom: 6.4rem;
+  right: 4.4rem;
+  width: 16.5rem;
+  height: 2rem;
+}
+.pageview__targetImg4::after {
+  bottom: 3.2rem;
+}
+.pageview__targetImg4::before {
+  bottom: 2rem;
+  left: 0.8rem;
+}
+.pageview__targetImg5 {
+  right: 0;
+  width: 23rem;
+  height: 48rem;
+}
+.pageview__targetImg5::after {
+  right: 2rem;
+  bottom: 1.5rem;
+  left: -0.8rem;
+}
+.pageview__targetImg5::before {
+  bottom: 5.1rem;
+  left: 0.6rem;
+}
+.pageview__targetImg6 {
+  bottom: 6.4rem;
+  left: 4.2rem;
+  width: 16.5rem;
+  height: 2rem;
+}
+.pageview__targetImg6::after {
+  bottom: 3.2rem;
+}
+.pageview__targetImg6::before {
+  bottom: 2rem;
+  left: 0.6rem;
+}
+/* keyboard */
+.keyboard__imgWrap {
+  width: 100%;
+  height: 38.5rem;
 }

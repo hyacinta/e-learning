@@ -55,6 +55,7 @@
   --overline: 1rem;
   --width: 128rem;
   --height: 72rem;
+  --btnPad: -3.2rem;
 }
 
 
@@ -90,6 +91,7 @@ input::placeholder {
   border-radius: 0.4rem 0 0 0.4rem;
 }
 .progress__bar::after {
+  content: "";
   background-color: var(--main-light);
   border-radius: 0.8rem;
   box-shadow: 0 0 0.8rem 0 rgba(0,0,0,0.6);
@@ -103,6 +105,7 @@ input::placeholder {
   transform: rotate(180deg);
 }
 [class*="__btnClosed"]::before, [class*="__btnClosed"]::after {
+  content: "";
   background-color: var(--white);
   box-shadow: 0 0 0.8rem 0 rgba(0, 0, 0, 0.4);
 }
@@ -115,6 +118,30 @@ input::placeholder {
 [class*="__btnClosed"]:hover::before, [class*="__btnClosed"]:hover::after {
   background-color: var(--point3);
   box-shadow: 0 0 0.4rem 0 rgba(0, 0, 0, 1);
+}
+
+/* box arrow pointer */
+[class*="arrow--"]::before {
+  content: "";
+  border-width: 0.4rem;
+  border-style: solid;
+  border-color: transparent;
+}
+.arrow--top::before {
+  border-top-width: 0.8rem;
+  border-top-color: var(--white);
+}
+.arrow--right::before {
+  border-right-width: 0.8rem;
+  border-right-color: var(--white);
+}
+.arrow--bottom::before {
+  border-bottom-width: 0.8rem;
+  border-bottom-color: var(--white);
+}
+.arrow--left::before {
+  border-left-width: 0.8rem;
+  border-left-color: var(--white);
 }
 
 
@@ -164,6 +191,9 @@ input::placeholder {
   color: var(--point3);
   background-color: var(--point2);
   box-shadow: 0 0 0.2rem 0 rgba(0, 0, 0, 0.8);
+}
+.video__bookMark.open .bookMark__btnOpen {
+  border-radius: 0 0 0 0.8rem;
 }
 .bookMark__list {
   font-size: var(--smallText);
@@ -238,6 +268,7 @@ input::placeholder {
   font-size: var(--caption);
 }
 .controller__videoTime::after {
+  content: "";
   background-color: rgba(255, 255, 255, 0.4);
 }
 .controller__btnVolume {
@@ -323,6 +354,7 @@ input::placeholder {
   background-image: url("../images/controller/icon__nextPage--hover.png");
 }
 .controller__pageNation::after {
+  content: "";
   background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -381,4 +413,121 @@ input::placeholder {
   border-bottom: none;
   background-color: var(--dimd);
   backdrop-filter: blur(0.8rem);
+}
+
+/* help */
+.help {
+  background-color: var(--white);
+}
+/* help nav */
+.help__helpNav {
+  background: var(--point2) url("../images/wrap_bg2.png") no-repeat right -4rem;
+  background-size: 30%;
+}
+.helpNav__btnMovePage {
+  font-family: 'NanumSquareRound';
+  font-size: var(--title);
+  font-weight: bold;
+  color: var(--point1);
+  background-color: var(--point3);
+  border-radius: 1.2rem 1.2rem 0 0;
+  border-style: solid;
+  border-width: 0.2rem 0.2rem 0.1rem 0.2rem;
+  border-color: transparent;
+  border-bottom-color: var(--border-gray);
+  box-shadow: inset 0 -0.4rem 0.4rem 0 rgba(0, 0, 0, 0.05);
+}
+.helpNav__btnMovePage:hover {
+  border-color: var(--point1);
+  border-bottom-color: var(--border-gray);
+  text-decoration: underline;
+}
+.active .helpNav__btnMovePage {
+  background-color: var(--white);
+  border-color: var(--point1);
+  border-bottom-color: transparent;
+  text-decoration: none;
+  box-shadow: none;
+  cursor: default;
+}
+/* learningmap */
+.learningmap__item {
+  color: var(--text-primary);
+}
+.learningmap__item::before {
+  font-family: 'NanumSquareRound';
+  font-size: var(--subTitle);
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--text-disabled);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
+}
+.learningmap__item.current::before {
+  color: var(--point3);
+  background-color: var(--point1);
+}
+/* pageview */
+.pageview__imgWrap {
+  background: url("../images/help/pageview.png") no-repeat center;
+}
+[class*="pageview__btnTarget"] {
+  font-family: 'NanumSquareRound';
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--text-disabled);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
+}
+[class*="pageview__btnTarget"]:hover {
+  color: var(--point3);
+  background-color: var(--point1);
+}
+[class*="pageview__targetImg"] {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+[class*="pageview__targetImg"]::after {
+  border-radius: 0.4rem;
+  font-size: var(--caption);
+  line-height: 1.2;
+  background-color: var(--white);
+}
+.pageview__targetImg1 {
+  background-image: url("../images/help/lesson--hover.png");
+}
+.pageview__targetImg1::after {
+  content: "차시명입니다.";
+}
+.pageview__targetImg2 {
+  background-image: url("../images/help/logo--hover.png");
+}
+.pageview__targetImg2::after {
+  content: "과정명입니다.";
+}
+.pageview__targetImg3 {
+  background-image: url("../images/help/bookmark--hover.png");
+}
+.pageview__targetImg3::after {
+  content: "해당 소주제로 이동이 가능합니다.";
+}
+.pageview__targetImg4 {
+  background-image: url("../images/help/pageController--hover.png");
+}
+.pageview__targetImg4::after {
+  content: "학습도우미 및 스크립트창을 열거나 학습 화면을 제어할 수 있습니다.";
+}
+.pageview__targetImg5 {
+  background-image: url("../images/help/nav--hover.png");
+}
+.pageview__targetImg5::after {
+  content: "학습 구조를 확인하고 해당 페이지로 이동이 가능합니다.";
+}
+.pageview__targetImg6 {
+  background-image: url("../images/help/videoController--hover.png");
+}
+.pageview__targetImg6::after {
+  content: "재생/일시정지 등 학습 영상을 제어할 수 있습니다.";
+}
+/* keyboard */
+.keyboard__imgWrap {
+  background: url("../images/help/keyboard.png") no-repeat center;
 }

@@ -144,6 +144,14 @@ input::placeholder {
   border-left-color: var(--white);
 }
 
+code {
+  font-family: 'D2Coding' !important;
+  font-weight: normal !important;
+  letter-spacing: 0.05em !important;
+  color: var(--white) !important;
+  background-color: #2d2d2d !important;
+  border-radius: 0.2rem;
+}
 
 /* style */
 .wrap {
@@ -163,7 +171,7 @@ input::placeholder {
 
 /* main */
 .main {
-  background: linear-gradient(134deg, var(--main) 0%, var(--main-light) 100%);
+  background-color: var(--white);
   box-shadow: 0 0 1.6rem 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -451,10 +459,15 @@ input::placeholder {
   cursor: default;
 }
 /* learningmap */
+.learningmap__list {
+  counter-reset: number 0;
+}
 .learningmap__item {
   color: var(--text-primary);
 }
 .learningmap__item::before {
+  counter-increment: number 1;
+  content: counter(number);
   font-family: 'NanumSquareRound';
   font-size: var(--subTitle);
   font-weight: bold;
@@ -530,4 +543,295 @@ input::placeholder {
 /* keyboard */
 .keyboard__imgWrap {
   background: url("../images/help/keyboard.png") no-repeat center;
+}
+
+.quizPage__intro {
+  font-family: 'NanumSquareRound';
+  background: linear-gradient(134deg, #FBB02E 0%, #FEDF40 100%);
+}
+.intro__title {
+  font-size: var(--headlineL);
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+  color: var(--sub-deep);
+}
+.intro__exp {
+  font-size: var(--headline6);
+  text-align: center;
+}
+.intro__exp em {
+  font-size: 1.1em;
+  font-weight: bolder;
+  font-style: normal;
+  color: var(--point2);
+}
+.intro__btnStart, .result__btnRetry {
+  font-size: var(--headline6);
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: var(--point3);
+  background-color: var(--point1);
+  border-radius: 0.4rem;
+  border: 0.2rem solid transparent;
+}
+.intro__btnStart:hover, .result__btnRetry:hover {
+  text-decoration: underline;
+  border-color: var(--point3);
+}
+.quiz__question {
+  font-size: var(--headline6);
+  border-bottom: 0.1rem dashed var(--point1);
+}
+.question__number {
+  font-family: 'NanumSquareRound';
+  font-size: var(--headline3);
+  font-weight: bold;
+  line-height: 1;
+  color: var(--point1);
+}
+.question__number::before {
+  font-size: var(--headline1);
+}
+.question__number::before {
+  content: "Q";
+}
+.question__number::after {
+  content: ".";
+}
+.question__titleWrap {
+  font-weight: bold;
+}
+.question__oxExp {
+  font-size: var(--subTitle);
+  color: var(--sub-deep);
+}
+.question__titleWrap em {
+  color: var(--point2);
+  border-bottom: 0.1rem solid var(--point2);
+}
+.quiz__additional {
+  font-family: 'NanumSquareRound';
+  font-size: var(--title);
+  font-weight: bold;
+  color: var(--point3);
+  background-color: var(--point2);
+  border-radius: 0.4rem;
+}
+.quiz__additional.code {
+  font-size: var(--smallText);
+}
+/* 사지선다 */
+.quiz__select.sa {
+  counter-reset: number 0;
+}
+.sa .select__item::before {
+  font-size: var(--smallText);
+  font-weight: bold;
+  color: var(--point2);
+}
+.sa .select__item.myAnswer::before {
+  content: "PICK";
+}
+.sa .select__item.correctAnswer::before {
+  content: "정답";
+  background: url("../images/quiz/icon__check.png") no-repeat right -0.8rem;
+}
+.sa .select__btnSelect:hover, .sa .myAnswer .select__btnSelect, .sa .correctAnswer  .select__btnSelect {
+  font-weight: bolder;
+  color: var(--point1);
+  text-decoration: underline;
+}
+.sa .select__btnSelect::before {
+  counter-increment: number;
+  content: counter(number);
+  font-family: 'NanumSquareRound';
+  font-size: var(--subTitle);
+  font-weight: bold;
+  color: var(--text-secondary);
+  text-decoration: none;
+  background-color: var(--light-gray);
+  border: 0.2rem solid var(--point1);
+  border-radius: 0.4rem;
+}
+.sa .select__btnSelect:hover::before, .sa .myAnswer .select__btnSelect::before, .sa .correctAnswer  .select__btnSelect::before {
+  color: var(--point3);
+  background-color: var(--point1);
+  border-color: var(--point3);
+}
+/* ox */
+.ox .select__btnSelect {
+  border:0.2rem solid var(--point1);
+  border-radius: 1.2rem;
+  background-color: var(--light-gray);
+}
+.ox .select__btnSelect.O::before, .ox .select__btnSelect.X::before, .ox .select__btnSelect.X::after {
+  content: "";
+}
+.ox .select__btnSelect.O::before {
+  border: 0.4rem solid var(--text-secondary);
+  border-radius: 50%;
+}
+.ox .select__btnSelect.X::before, .ox .select__btnSelect.X::after {
+  background-color: var(--text-secondary);
+  border-radius: 0.2rem;
+}
+.ox .select__btnSelect.X::before {
+  transform: rotate(45deg);
+}
+.ox .select__btnSelect.X::after {
+  transform: rotate(-45deg);
+}
+.ox .select__btnSelect:hover {
+  background-color: var(--point1);
+  border: 0.2rem solid var(--point3);
+}
+.ox .select__btnSelect.O:hover::before {
+  border-color: var(--point3);
+}
+.ox .select__btnSelect.X:hover::before, .ox .select__btnSelect.X:hover::after {
+  background-color: var(--point3);
+}
+/* 주관식 */
+.select__input {
+  font-size: var(--headline5);
+  color: var(--text-secondary);
+  text-align: center;
+}
+.select__input:focus {
+  border-color: var(--point1);
+  outline: none;
+}
+.select__btnAnswerCheck {
+  font-size: var(--title);
+  font-weight: bold;
+  color: var(--point3);
+  background-color: var(--point1);
+  border-radius: 0.4rem;
+  border: 0.2rem solid transparent;
+}
+.select__btnAnswerCheck:hover {
+  border-color: var(--point3);
+  text-decoration: underline;
+}
+/* 해설지 */
+.quiz__answerSheet {
+  box-shadow: 0 0 1.6rem 0 rgba(0, 0, 0, 0.3);
+  background-color: var(--dimd);
+  backdrop-filter: blur(0.8rem);
+}
+.answerSheet__inner {
+  background: var(--white);
+  border-radius: 1.2rem 0 1.2rem 1.2rem;
+  border: 0.2rem solid var(--point1);
+}
+.answerSheet__correctAnswer {
+  font-size: var(--subTitle);
+  font-weight: bold;
+  color: var(--point2);
+}
+.answerSheet__exp {
+  color: var(--text-secondary);
+}
+.answerSheet__correctAnswer::before, .answerSheet__exp::before {
+  font-size: var(--subTitle);
+  font-weight: bold;
+  color: var(--point3);
+  background-color: var(--point1);
+  border-radius: 0.4rem;
+}
+.answerSheet__correctAnswer::before {
+  content: "정답";
+} 
+.answerSheet__exp::before {
+  content: "해설";
+}
+.answerSheet__correctAnswer.O span::before, .answerSheet__correctAnswer.X span::before, .answerSheet__correctAnswer.X span::after {
+  content: "";
+  display: block;
+}
+.answerSheet__correctAnswer.O span::before {
+  border-radius: 2rem;
+}
+.answerSheet__correctAnswer.X span::before, .answerSheet__correctAnswer.X span::after {
+  background-color: var(--point2);
+}
+.answerSheet__correctAnswer.X span::before {
+  transform: rotate(45deg);
+}
+.answerSheet__correctAnswer.X span::after {
+  transform: rotate(-45deg);
+}
+.answerSheet__btnNextStep {
+  font-size: var(--subTitle);
+  font-weight: bold;
+  color: var(--point1);
+  background-color: var(--white);
+  border-radius: 0 0 0 0.4rem;
+  border: 0.2rem solid var(--point1);
+}
+.answerSheet__btnNextStep:hover {
+  color: var(--point3);
+  background-color: var(--point1);
+}
+.quiz__alert {
+  background-color: var(--dimd);
+  backdrop-filter: blur(0.8rem);
+}
+.alert__textBox {
+  font-family: 'NanumSquareRound';
+  font-size: var(--headline4);
+  font-weight: bold;
+  line-height: 1.2;
+  color: var(--point3);
+  text-align: center;
+  background-color: var(--point1);
+  border-radius: 50%;
+  box-shadow: 0 0 2.4rem 0 rgba(0, 0, 0, 0.5);
+}
+.alert__textBox::before {
+  content: "!";
+  font-size: 28rem;
+  font-weight: bolder;
+}
+.alert__textBox span {
+  text-shadow: 0 0 0rem var(--point1),
+               0 0.3rem 0 var(--point1),
+               0 -0.3rem 0 var(--point1),
+               0.3rem 0 0 var(--point1),
+               0.3rem 0.3rem 0 var(--point1),
+               0.3rem -0.3rem 0 var(--point1),
+               -0.3rem 0 0 var(--point1),
+               -0.3rem 0.3rem 0 var(--point1),
+               -0.3rem -0.3rem 0 var(--point1);
+}
+.quizPage__result {
+  background: linear-gradient(134deg, #FBB02E 0%, #FEDF40 100%);
+}
+.result__title {
+  font-size: var(--headline1);
+  font-weight: bold;
+  color: var(--sub-deep);
+  text-align: center;
+}
+[class^="result__item"] {
+  border-radius: 1.2rem;
+  border: 0.2rem solid var(--point2);
+  background-color: var(--white);
+}
+[class^="result__item"]::before, [class^="result__item"]::after {
+  content: "";
+}
+[class^="result__item"].correct::before {
+  border-radius: 50%;
+  border: 0.4rem solid var(--text-secondary);
+}
+[class^="result__item"].wrong::before, [class^="result__item"].wrong::after {
+  background-color: var(--text-secondary);
+  border-radius: 0.2rem;
+}
+[class^="result__item"].wrong::before {
+  transform: rotate(45deg);
+}
+[class^="result__item"].wrong::after {
+  transform: rotate(-45deg);
 }

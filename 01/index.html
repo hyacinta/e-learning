@@ -9,17 +9,78 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap lock">
     <!-- header -->
     <header class="header flex--between">
       <h1 class="header__logo">front-end Developer KIM KYU REE</h1>
       <h2 class="header__lesson">1. 자바스크립트의 배열</h2>
     </header>
     <!-- main -->
-    <main class="main video position--center">
+    <main class="main quizPage position--center">
       <h3 class="a11yHidden">영상 콘텐츠 영역</h3>
+      <!-- quiz page -->
+      <!-- <section class="quizPage__intro">
+        <h4 class="intro__title">QUIZ</h4>
+        <p class="intro__exp">지금까지 학습한 내용을 퀴즈를 통해 확인해 보겠습니다.<br>총 <em>2개</em>의 문제가 주어지며 기회는 <em>2번</em> 입니다.</p>
+        <button type="button" class="intro__btnStart">START</button>
+      </section> -->
+      <!-- <section class="quizPage__quiz">
+        <div class="quiz__question">
+          <div class="question__number">1</div>
+          <div class="question__titleWrap">
+            <p class="question__oxExp">아래의 설명이 맞으면 O, 틀리면 X를 선택하세요.</p>
+            <p class="question__text">앱 사용 <code> hello =></code>보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은? 앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은?</p>
+          </div>
+        </div>
+        <ul class="quiz__additional code">
+          <li class="additional__item">ㄱ, ㄴ, ㄷ, ㄹ</li>
+          <li class="additional__item">ㄱ, ㄴ, ㄷ, ㄹ</li>
+          <li class="additional__item">ㄱ, ㄴ, ㄷ, ㄹ</li>
+          <li class="additional__item">ㄱ, ㄴ, ㄷ, ㄹ</li>
+        </ul>
+        <code class="quiz__additional code">
+          hello => 
+        </code>
+        <ul class="quiz__select sa">
+          <li class="select__item myAnswer"><button type="button" class="select__btnSelect" data-select="1">선택<code>hello =></code></button></li>
+          <li class="select__item correctAnswer"><button type="button" class="select__btnSelect" data-select="2">선택</button></li>
+          <li class="select__item"><button type="button" class="select__btnSelect" data-select="3">선택</button></li>
+          <li class="select__item"><button type="button" class="select__btnSelect" data-select="4">선택</button></li>
+        </ul>
+        <ul class="quiz__select ox">
+          <li class="select__item myAnswer"><button type="button" class="select__btnSelect O" data-select="O">맞다</button></li>
+          <li class="select__item"><button type="button" class="select__btnSelect X" data-select="X">틀리다</button></li>
+        </ul>
+        <div class="quiz__select ju">
+          <input type="text" class="select__input" placeholder="정답을 입력하세요.">
+          <button type="button" class="select__btnAnswerCheck">정답 확인하기</button>
+        </div>
+        <div class="quiz__answerSheet position--bottom">
+          <div class="answerSheet__inner">
+            <p class="answerSheet__correctAnswer X"><span></span></p>
+            <p class="answerSheet__exp">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 </p>
+          </div>
+          <button type="button" class="answerSheet__btnNextStep">다음문제</button>
+        </div>
+        <div class="quiz__alert position--center flex--center">
+          <p class="alert__textBox flex--center"><span>다시 한 번 풀어보세요.</span></p>
+        </div>
+      </section> -->
+      <section class="quizPage__result flex--center">
+        <h4 class="result__title">결과보기</h4>
+        <ul class="result__list flex--between">
+          <li class="result__item1 correct">맞혔습니다.</li>
+          <li class="result__item2 wrong">틀렸습니다.</li>
+          <li class="result__item3 correct">맞혔습니다.</li>
+        </ul>
+        <button type="button" class="result__btnRetry">다시풀기</button>
+      </section>
+      <!-- video -->
+      <!-- <video class="video" autoplay>
+        <source src="/media/cc0-videos/flower.mp4" type="video/mp4">
+      </video> -->
       <!-- bookMark -->
-      <div class="video__bookMark open">
+      <!-- <div class="video__bookMark open">
         <h4 class="a11yHidden">영상 북마크 영역</h4>
         <button type="button" class="bookMark__btnOpen">북마크</button>
         <ol class="bookMark__list">
@@ -28,9 +89,9 @@
           <li class="bookMark__item"><button type="button" class="bookMark__btnMoveTime" data-timesynk="3">북마크 3</button></li>
           <li class="bookMark__item"><button type="button" class="bookMark__btnMoveTime" data-timesynk="4">북마크 4</button></li>
         </ol>
-      </div>
+      </div> -->
       <!-- skip button -->
-      <div class="video__btnSkip flex--center">SKIP</div>
+      <!-- <button type="button" class="video__btnSkip flex--center">SKIP</button> -->
       <!-- controller -->
       <section class="controller flex--between">
         <h4 class="a11yHidden">컨트롤러</h4>
@@ -107,9 +168,7 @@
       <button type="button" class="script__btnClosed">닫기</button>
     </section>
     <!-- help -->
-
-
-    <section class="help position--center">
+    <!-- <section class="help position--center">
       <h3 class="a11yHidden">학습도우미</h3>
       <nav class="help__helpNav">
         <ul class="helpNav__list flex--start">
@@ -169,9 +228,7 @@
         <div class="keyboard__imgWrap"></div>
       </div>
       <button type="button" class="help__btnClosed">닫기</button>
-    </section>
-
-
+    </section> -->
   </div>
 </body>
 </html>

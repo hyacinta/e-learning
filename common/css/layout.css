@@ -86,6 +86,10 @@
   height: 0;
 }
 
+code {
+  margin: 0 0.2rem;
+  padding: 0.1em 0.5em 0;
+}
 
 /* layout */
 .wrap {
@@ -260,6 +264,11 @@
   padding: 0.2rem 0 0.2rem 1.6rem;
 }
 
+/* video */
+.video {
+  width: 100%;
+  height: 100%;
+}
 
 /* script */
 .script {
@@ -316,7 +325,6 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  counter-reset: number 0;
 }
 .learningmap__item {
   display: flex;
@@ -325,8 +333,6 @@
   margin-bottom: 0.8rem;
 }
 .learningmap__item::before {
-  counter-increment: number 1;
-  content: counter(number);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -480,4 +486,260 @@
 .keyboard__imgWrap {
   width: 100%;
   height: 38.5rem;
+}
+
+.quizPage__intro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+}
+.lock .quizPage__intro {
+  padding-bottom: 8rem;
+}
+.intro__exp {
+  width: 100%;
+  margin-bottom: 4rem;
+}
+.intro__btnStart, .result__btnRetry {
+  padding: 0.5em 1em 0.4em;
+}
+.quizPage__quiz {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+[class^="quiz__"] {
+  width: 100%;
+}
+.quiz__question {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 10.4rem;
+  margin: 4.8rem 4rem 4rem 6.4rem;
+}
+.question__number {
+  display: flex;
+  align-items: flex-end;
+  margin-right: 0.8rem;
+}
+.question__number::before {
+  margin-bottom: -0.2rem;
+}
+.question__titleWrap {
+  padding-bottom: 0.4rem;
+}
+.quiz__additional {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -2.4rem 4rem 4rem 6.4rem;
+  padding: 0.7em 1em 0.6em;
+}
+.additional__item {
+  margin: 0 1.2rem;
+}
+.quiz__select {
+  margin: 0 4rem 0 6.4rem;
+}
+.select__item {
+  position: relative;
+  margin: 0 0.8rem 1.2rem;
+}
+/* 사지선다 */
+.quiz__select.sa {
+  padding-left: 4rem;
+}
+.sa .select__btnSelect {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.sa .select__btnSelect::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-right: 0.8rem;
+  padding-top: 0.5rem;
+}
+.sa .select__item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.sa .select__item::before {
+  order: -1;
+  position: absolute;
+  margin-left: -3.6rem;
+}
+.sa .select__item.correctAnswer::before {
+  padding-right: 4.2rem;
+}
+/* ox */
+.quiz__select.ox, .quiz__select.ju {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.ox .select__btnSelect {
+  position: relative;
+  width: 16rem;
+  height: 16rem;
+  margin: 0 0.8rem;
+  padding-top: 16rem;
+  overflow: hidden;
+}
+.ox .select__btnSelect.O::before, .ox .select__btnSelect.X::before, .ox .select__btnSelect.X::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.ox .select__btnSelect.O::before {
+  width: 75%;
+  height: 75%;
+}
+.ox .select__btnSelect.X::before, .ox .select__btnSelect.X::after {
+  width: 100%;
+  height: 0.4rem;
+}
+/* 주관식 */
+.quiz__select.ju {
+  flex-direction: column;
+}
+.select__input {
+  margin: 0 auto 2.4rem;
+  padding: 0.5em 0.75em;
+}
+.select__btnAnswerCheck {
+  padding: 0.5em 1em;
+}
+/* 해설지 */
+.quiz__answerSheet {
+  width: 100%;
+  padding: 2.4rem;
+  z-index: 10;
+}
+.answerSheet__inner {
+  width: 100%;
+  margin: auto;
+  padding: 2.4rem;
+}
+.answerSheet__correctAnswer, .answerSheet__exp {
+  display: flex;
+  justify-content: flex-start;
+}
+.answerSheet__correctAnswer {
+  align-items: center;
+}
+.answerSheet__exp {
+  align-content: flex-start;
+}
+.answerSheet__correctAnswer {
+  margin-bottom: 0.8rem;
+}
+.answerSheet__correctAnswer::before, .answerSheet__exp::before {
+  display: flex;
+  align-items: center;
+  margin-right: 1.2rem;
+  padding: 0.3rem 0.5em;
+}
+.answerSheet__correctAnswer span {
+  position: relative;
+  width: 2rem;
+}
+.answerSheet__correctAnswer.O span::before, .answerSheet__correctAnswer.X span::before, .answerSheet__correctAnswer.X span::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2rem;
+  margin: auto;
+}
+.answerSheet__correctAnswer.O span::before {
+  border: 0.2rem solid var(--point2);
+}
+.answerSheet__correctAnswer.X span::before, .answerSheet__correctAnswer.X span::after { 
+  width: 100%;
+  height: 0.2rem;
+}
+.answerSheet__btnNextStep {
+  position: absolute;
+  top: 2.4rem;
+  right: 2.4rem;
+  padding: 0.4em 1em;
+}
+.quiz__alert {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.alert__textBox {
+  position: relative;
+  width: 40rem;
+  height: 40rem;
+  overflow: hidden;
+}
+.alert__textBox::before, .alert__textBox span {
+  position: absolute;
+}
+.alert__textBox::before {
+  top: 4rem;
+}
+.alert__textBox span {
+  padding: 1.6rem;
+  z-index: 500;
+}
+.quizPage__result {
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.lock .quizPage__result {
+  padding-bottom: 8rem;
+}
+.result__title {
+  margin-bottom: 2.4rem;
+}
+.result__list {
+  margin-bottom: 4rem;
+}
+[class^="result__item"] {
+  position: relative;
+  width: 18.4rem;
+  height: 18.4rem;
+  padding-top: 18.4rem;
+  margin: 0 1.6rem;
+  overflow: hidden;
+}
+[class^="result__item"]::before, [class^="result__item"]::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+[class^="result__item"].correct::before {
+  width: 13.6rem;
+  height: 13.6rem;
+}
+[class^="result__item"].wrong::before, [class^="result__item"].wrong::after {
+  width: 14.4rem;
+  height: 0.4rem;
 }

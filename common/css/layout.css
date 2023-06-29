@@ -1,82 +1,77 @@
 /* 전체 공통 사용 */
-.flex--center {
+/* flex */
+[class*="flex--"] {
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.flex--between {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 .flex--start {
-  display: flex;
   justify-content: flex-start;
-  align-items: center;
 }
-.position--center {
+.flex--center {
+  justify-content: center;
+}
+.flex--between {
+  justify-content: space-between;
+}
+
+/* position */
+[class*="position--"] {
   position: absolute;
-  top: 4rem;
   right: 0;
   bottom: 0;
-  left: 0;
   margin: auto;
-  width: var(--width);
-  height: var(--height);
   overflow: hidden;
 }
-.position--left {
+.position--center {
+  top: 4rem;
+  left: 0;
+  width: var(--width);
+  height: var(--height);
+}
+.position--right {
+  top: 0;
+}
+.position--bottom {
+  left: 0;
+}
+
+/* circle mark, cross mark, closed */
+[class*="__btnClosed"]::before, [class*="__btnClosed"]::after,
+[class^="result__item"]::before, [class^="result__item"]::after,
+.ox .select__btnSelect::before, .ox .select__btnSelect::after,
+.answerSheet__correctAnswer.O span::before,
+.answerSheet__correctAnswer.X span::before, .answerSheet__correctAnswer.X span::after {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  margin: auto;
-}
-.position--bottom {
-  position: absolute;
-  right: 0;
-  bottom: 0;
   left: 0;
   margin: auto;
 }
 
-/* progress */
-.progress {
-  height: 0.8rem;
-}
-.progress__bar {
-  position: relative;
-  width: 0;
-  height: 100%;
-}
-.progress__bar::after {
-  position: absolute;
-  top: -0.4rem;
-  right: -0.8rem;
-  width: 1.6rem;
-  height: 1.6rem;
-}
-
-/* closed 버튼 */
+/* closed Btn */
 [class*="__btnClosed"] {
   position: absolute;
-  top: 1.6rem;
-  right: 1.6rem;
-  width: 4rem;
-  height: 4rem;
-  padding-top: 4rem;
   overflow: hidden;
 }
 [class*="__btnClosed"]::before, [class*="__btnClosed"]::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: block;
   width: 100%;
   height: 0.2rem;
-  margin: auto;
+}
+[class*="__btnClosed--40"] {
+  width: 4rem;
+  height: 4rem;
+  padding-top: 4rem;
+}
+[class*="__btnClosed--32"] {
+  width: 3.2rem;
+  height: 3.2rem;
+  padding-top: 3.2rem;
+}
+[class*="__btnClosed--24"] {
+  width: 2.4rem;
+  height: 2.4rem;
+  padding-top: 2.4rem;
 }
 
 /* box arrow pointer */
@@ -86,10 +81,6 @@
   height: 0;
 }
 
-code {
-  margin: 0 0.2rem;
-  padding: 0.1em 0.5em 0;
-}
 
 /* layout */
 .wrap {
@@ -112,27 +103,34 @@ code {
   overflow: hidden;
 }
 
+/* video page */
+.video {
+  width: 100%;
+  height: 100%;
+}
 /* bookmark */
-.video__bookMark {
+.video__bookMark, .bookMark__btnOpen  {
   position: absolute;
-  top: 1.6rem;
   right: 0;
+}
+.video__bookMark {
+  top: 1.6rem;
   min-width: 3.6rem;
   min-height: 10rem;
-  
 }
 .video__bookMark.open {
   overflow: hidden;
 }
 .bookMark__btnOpen {
-  position: absolute;
-  top: 0;
-  right: 0;
   width: 3.6rem;
   padding: 1.2rem 0.2rem;
   z-index: 10;
 }
 .bookMark__list {
+  display: none;
+}
+.open .bookMark__list {
+  display: block;
   padding: 1.6rem 5.6rem 0.8rem 1.6rem;
 }
 .bookMark__item {
@@ -141,21 +139,21 @@ code {
 .bookMark__btnMoveTime::before {
   margin-right: 0.8rem;
 }
-
 /* skip */
 .video__btnSkip {
   position: absolute;
-  right: 1.6rem;
-  bottom: 1.6rem;
+  right: 2.4rem;
+  bottom: 10.4rem;
   width: 10.4rem;
   height: 10.4rem;
   padding-top: 0.4rem;
   padding-left: 0.2rem;
 }
-.lock .video__btnSkip {
-  bottom: 10.4rem;
+.unLock .video__btnSkip {
+  bottom: 2.4rem;
 }
-/* controller 공통 사용 */
+
+/* controller */
 [class*="controller__"] {
   margin-right: 0.8rem;
 }
@@ -165,35 +163,53 @@ code {
   padding-top: 4rem;
   overflow: hidden;
 }
-/* controller */
-.controller {
-  position: absolute;
-  bottom: 0;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 2.4rem 1.6rem 0.8rem;
+/* progress */
+[class*="__progress"].large {
+  height: 0.8rem;
 }
-.controller__videoProgress {
+[class*="__progress"].small {
+  height: 0.4rem;
+}
+.progress__bar {
+  position: relative;
+  width: 0;
+  height: 100%;
+}
+.progress__bar::after {
+  position: absolute;
+}
+.large .progress__bar::after {
+  top: -0.4rem;
+  right: -0.8rem;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+.small .progress__bar::after {
+  top: -0.2rem;
+  right: -0.4rem;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+/* controller layout */
+.controller {
+  flex-wrap: wrap;
+  padding: 2.4rem 1.6rem 0.8rem;
+  overflow: visible;
+}
+.unLock .controller {
+  bottom: -10rem;
+}
+.controller__videoTime {
   width: 100%;
-  margin-left: 0.8rem;
-  margin-bottom: 1.2rem;
+  margin: 0 0 1.2rem;
+}
+.videoTime__progress {
+  flex-grow: 1;
+  margin-right: 1.2rem;
+  margin-left: 1.2rem;
 }
 .controller__btnPlay {
   margin-left: 0;
-}
-.controller__videoTime::after {
-  position: relative;
-  top: 0.1rem;
-  display: block;
-  width: 0.1rem;
-  height: 1rem;
-  margin: 0 0.6rem;
-}
-.videoTime__total {
-  order: 1;
-}
-.volume__progress {
-  width: 4rem;
 }
 .controller__playRate {
   position: relative;
@@ -202,25 +218,26 @@ code {
   height: 4rem;
   padding: 0.2rem 1rem 0 2.6rem;
 }
-.playRate__btnChangeRate {
-  height: 2.4rem;
-  margin-bottom: 0.4rem;
-  padding: 0 0.4rem 0 2.2rem;
-}
-.playRate__item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .playRate__list {
-  /* display: none; */
+  display: none;
+}
+.open .playRate__list {
   position: absolute;
   right: 0;
   bottom: 4rem;
   left: 0;
+  display: block;
   margin: auto;
-  padding: 0.8rem 0.4rem 0.4rem;
+  padding: 0.8rem 0.4rem 0.4rem 0.2rem;
   z-index: 10;
+}
+.playRate__btnChangeRate {
+  height: 2.4rem;
+  margin-bottom: 0.4rem;
+  padding: 0 0.4rem 0.1rem 2.2rem;
+}
+.volume__progress {
+  width: 4rem;
 }
 .controller__btnIndex {
   margin-left: auto;
@@ -231,10 +248,9 @@ code {
 .controller__pageNation::after {
   position: relative;
   top: -0.1rem;
-  display: block;
   width: 0.1rem;
-  height: 1.6rem;
-  margin: 0 1.2rem;
+  height: 0.9em;
+  margin: 0 0.5em;
 }
 .pageNation__total, .controller__btnNextPage {
   order: 1;
@@ -246,6 +262,9 @@ code {
   height: 100vh;
   padding: 1.6rem;
 }
+.nav.open {
+  display: flex;
+}
 .nav__list {
   width: 24rem;
   height: var(--height);
@@ -254,7 +273,7 @@ code {
 }
 .nav__itemTitle {
   width: 100%;
-  padding: 1.2rem 1.6rem;
+  padding: 1.2rem 1.6rem 1rem;
 }
 .nav__subList {
   margin: 1.6rem 0;
@@ -263,11 +282,14 @@ code {
   margin-bottom: 0.4rem;
   padding: 0.2rem 0 0.2rem 1.6rem;
 }
-
-/* video */
-.video {
-  width: 100%;
-  height: 100%;
+.nav__subLink::before {
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-right: 0.8rem;
+}
+.nav__btnClosed--40 {
+  top: 1.6rem;
+  right: 1.6rem;
 }
 
 /* script */
@@ -277,6 +299,9 @@ code {
   height: 12.8rem;
   padding: 1.6rem 3.2rem 0.4rem 1.6rem;
 }
+.script.open {
+  display: block;
+}
 .script__paragraph {
   margin-bottom: 1.6rem;
 }
@@ -285,7 +310,7 @@ code {
   padding-right: 0.8rem;
   overflow-y: scroll;
 }
-.script__btnClosed {
+.script__btnClosed--24 {
   top: 0.4rem;
   right: 0.4rem;
   width: 2.4rem;
@@ -295,12 +320,12 @@ code {
 
 /* help */
 .help {
-  display: flex;
-  flex-wrap: wrap;
+  display: none;
 }
-/* help nav */
+.help.open {
+  display: block;
+}
 .help__helpNav {
-  width: 100%;
   padding: 2.4rem 1.6rem 0;
 }
 .helpNav__item {
@@ -318,18 +343,15 @@ code {
 }
 /* learningmap */
 .learningmap__list {
-  display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  justify-content: space-between;
+  align-content: flex-start;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 .learningmap__item {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  width: 50%;
   margin-bottom: 0.8rem;
 }
 .learningmap__item::before {
@@ -358,31 +380,30 @@ code {
   width: 2.4rem;
   height: 2.4rem;
   padding-top: 0.1rem;
-  padding-left: 0.1rem;
 }
 .pageview__btnTarget1 {
   top: 0.6rem;
-  left: var(--btnPad);
+  left: -3.2rem;
 }
 .pageview__btnTarget2 {
   top: 0.6rem;
-  right: var(--btnPad);
+  right: -3.2rem;
 }
 .pageview__btnTarget3 {
   top: 10rem;
-  right: var(--btnPad);
+  right: -3.2rem;
 }
 .pageview__btnTarget4 {
   right: 10.4rem;
-  bottom: var(--btnPad);
+  bottom: -3.2rem;
 }
 .pageview__btnTarget5 {
   right: 20.8rem;
-  bottom: var(--btnPad);
+  bottom: -3.2rem;
 }
 .pageview__btnTarget6 {
   bottom: 6.4rem;
-  left: var(--btnPad);
+  left: -3.2rem;
 }
 [class*="pageview__targetImg"] {
   display: none;
@@ -403,15 +424,15 @@ code {
   width: 10rem;
   height: 2rem;
 }
-.pageview__targetImg1::after {
-  top: -0.1rem;
-  right: -10rem;
-}
 .pageview__targetImg1::before {
   top: 0;
-  right: -1.2rem;
+  right: -1.3rem;
   bottom: 0;
-  margin: auto;
+  margin: auto 0;
+}
+.pageview__targetImg1::after {
+  top: -0.1rem;
+  right: -9.8rem;
 }
 .pageview__targetImg2 {
   top: 0.6rem;
@@ -419,15 +440,15 @@ code {
   width: 10rem;
   height: 2.4rem;
 }
-.pageview__targetImg2::after {
-  top: 0.1rem;
-  left: -10rem;
-}
 .pageview__targetImg2::before {
   top: 0;
-  left: -1.2rem;
+  left: -1.3rem;
   bottom: 0;
-  margin: auto;
+  margin: auto 0;
+}
+.pageview__targetImg2::after {
+  top: 0.1rem;
+  left: -9.7rem;
 }
 .pageview__targetImg3 {
   top: 9rem;
@@ -435,12 +456,12 @@ code {
   width: 13rem;
   height: 6rem;
 }
+.pageview__targetImg3::before {
+  top: 6.4rem;
+  left: 0.8rem;
+}
 .pageview__targetImg3::after {
   top: 7.2rem;
-}
-.pageview__targetImg3::before {
-  top: 6rem;
-  left: 0.8rem;
 }
 .pageview__targetImg4 {
   bottom: 6.4rem;
@@ -448,26 +469,26 @@ code {
   width: 16.5rem;
   height: 2rem;
 }
-.pageview__targetImg4::after {
-  bottom: 3.2rem;
-}
 .pageview__targetImg4::before {
   bottom: 2rem;
   left: 0.8rem;
+}
+.pageview__targetImg4::after {
+  bottom: 3.2rem;
 }
 .pageview__targetImg5 {
   right: 0;
   width: 23rem;
   height: 48rem;
 }
+.pageview__targetImg5::before {
+  bottom: 5.1rem;
+  left: 0.6rem;
+}
 .pageview__targetImg5::after {
   right: 2rem;
   bottom: 1.5rem;
   left: -0.8rem;
-}
-.pageview__targetImg5::before {
-  bottom: 5.1rem;
-  left: 0.6rem;
 }
 .pageview__targetImg6 {
   bottom: 6.4rem;
@@ -475,52 +496,57 @@ code {
   width: 16.5rem;
   height: 2rem;
 }
-.pageview__targetImg6::after {
-  bottom: 3.2rem;
-}
 .pageview__targetImg6::before {
   bottom: 2rem;
   left: 0.6rem;
+}
+.pageview__targetImg6::after {
+  bottom: 3.2rem;
 }
 /* keyboard */
 .keyboard__imgWrap {
   width: 100%;
   height: 38.5rem;
 }
-
-.quizPage__intro {
-  display: flex;
+.help__btnClosed--40 {
+  top: 2rem;
+  right: 2rem;
+}
+/* quiz */
+/* quiz 공통 사용 */
+code {
+  margin: 0 0.2rem;
+  padding: 0.1em 0.5em 0;
+}
+[class*="quizPage__"] {
   flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
   width: 100%;
   height: 100%;
-}
-.lock .quizPage__intro {
   padding-bottom: 8rem;
 }
+[class*="quizPage__"]:not(.quizPage__quiz) {
+  flex-direction: column;
+}
+.unLock [class*="quizPage__"] {
+  padding-bottom: 0;
+}
+.intro__btnStart, .select__btnAnswerCheck, .result__btnRetry {
+  padding: 0.5em 1em 0.4em;
+}
+/* quiz intro */
 .intro__exp {
   width: 100%;
   margin-bottom: 4rem;
 }
-.intro__btnStart, .result__btnRetry {
-  padding: 0.5em 1em 0.4em;
-}
+/* quiz */
 .quizPage__quiz {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   align-content: flex-start;
-  width: 100%;
-  height: 100%;
 }
 [class^="quiz__"] {
   width: 100%;
 }
 .quiz__question {
-  display: flex;
   align-items: flex-end;
-  justify-content: flex-start;
   height: 10.4rem;
   margin: 4.8rem 4rem 4rem 6.4rem;
 }
@@ -536,15 +562,13 @@ code {
   padding-bottom: 0.4rem;
 }
 .quiz__additional {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: -2.4rem 4rem 4rem 6.4rem;
   padding: 0.7em 1em 0.6em;
 }
 .additional__item {
   margin: 0 1.2rem;
 }
+/* 퀴즈 정답 선택지 */
 .quiz__select {
   margin: 0 4rem 0 6.4rem;
 }
@@ -552,14 +576,16 @@ code {
   position: relative;
   margin: 0 0.8rem 1.2rem;
 }
-/* 사지선다 */
+.sa .select__item::before {
+  order: -1;
+  position: absolute;
+  margin-left: -3.6rem;
+}
+.sa .select__item.correctAnswer::before {
+  padding-right: 4.2rem;
+}
 .quiz__select.sa {
   padding-left: 4rem;
-}
-.sa .select__btnSelect {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
 }
 .sa .select__btnSelect::before {
   display: flex;
@@ -570,26 +596,7 @@ code {
   margin-right: 0.8rem;
   padding-top: 0.5rem;
 }
-.sa .select__item {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.sa .select__item::before {
-  order: -1;
-  position: absolute;
-  margin-left: -3.6rem;
-}
-.sa .select__item.correctAnswer::before {
-  padding-right: 4.2rem;
-}
 /* ox */
-.quiz__select.ox, .quiz__select.ju {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
 .ox .select__btnSelect {
   position: relative;
   width: 16rem;
@@ -597,14 +604,6 @@ code {
   margin: 0 0.8rem;
   padding-top: 16rem;
   overflow: hidden;
-}
-.ox .select__btnSelect.O::before, .ox .select__btnSelect.X::before, .ox .select__btnSelect.X::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
 }
 .ox .select__btnSelect.O::before {
   width: 75%;
@@ -616,14 +615,12 @@ code {
 }
 /* 주관식 */
 .quiz__select.ju {
+  flex-wrap: wrap;
   flex-direction: column;
 }
 .select__input {
   margin: 0 auto 2.4rem;
   padding: 0.5em 0.75em;
-}
-.select__btnAnswerCheck {
-  padding: 0.5em 1em;
 }
 /* 해설지 */
 .quiz__answerSheet {
@@ -636,18 +633,11 @@ code {
   margin: auto;
   padding: 2.4rem;
 }
-.answerSheet__correctAnswer, .answerSheet__exp {
-  display: flex;
-  justify-content: flex-start;
-}
-.answerSheet__correctAnswer {
-  align-items: center;
-}
-.answerSheet__exp {
-  align-content: flex-start;
-}
 .answerSheet__correctAnswer {
   margin-bottom: 0.8rem;
+}
+.answerSheet__exp {
+  align-items: flex-start;
 }
 .answerSheet__correctAnswer::before, .answerSheet__exp::before {
   display: flex;
@@ -657,20 +647,13 @@ code {
 }
 .answerSheet__correctAnswer span {
   position: relative;
+  display: block;
   width: 2rem;
-}
-.answerSheet__correctAnswer.O span::before, .answerSheet__correctAnswer.X span::before, .answerSheet__correctAnswer.X span::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   height: 2rem;
-  margin: auto;
 }
 .answerSheet__correctAnswer.O span::before {
-  border: 0.2rem solid var(--point2);
+  width: 100%;
+  height: 2rem;
 }
 .answerSheet__correctAnswer.X span::before, .answerSheet__correctAnswer.X span::after { 
   width: 100%;
@@ -682,6 +665,7 @@ code {
   right: 2.4rem;
   padding: 0.4em 1em;
 }
+/* alert message */
 .quiz__alert {
   top: 0;
   width: 100%;
@@ -701,18 +685,10 @@ code {
   top: 4rem;
 }
 .alert__textBox span {
-  padding: 1.6rem;
+  padding: 2.4rem;
   z-index: 500;
 }
-.quizPage__result {
-  flex-wrap: wrap;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-.lock .quizPage__result {
-  padding-bottom: 8rem;
-}
+/* quiz result */
 .result__title {
   margin-bottom: 2.4rem;
 }
@@ -726,14 +702,6 @@ code {
   padding-top: 18.4rem;
   margin: 0 1.6rem;
   overflow: hidden;
-}
-[class^="result__item"]::before, [class^="result__item"]::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
 }
 [class^="result__item"].correct::before {
   width: 13.6rem;

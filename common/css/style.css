@@ -1,73 +1,11 @@
-/* font 설정 */
-@font-face {
-  font-family: 'NanumSquareRound';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'D2Coding';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
-
-/* 컬러 변수 및 영상 사이즈 설정 */
-:root {
-  --main: #FBB02E;
-  --main-light: #FEDF40;
-  --main-deep: #C18000;
-  --sub: #6F5831;
-  --sub-light: #BCAA92;
-  --sub-deep: #4A351A;
-  --point1: #8933FF;
-  --point2: #FF3D56;
-  --point3: #E0FB2E;
-  --point4: #79FB2E;
-  --error: #FF4343;
-  --success: #3864FF;
-  --dimd: rgba(0,0,0,0.6);
-  --white: #fff;
-  --black: #000;
-  --dark-gray: #404040;
-  --medium-gray: #707070;
-  --light-gray: #ddd;
-  --border-gray: #ccc;
-  --btn-disabled: #e6e6e6;
-  --text-primary: #202020;
-  --text-secondary: #707070;
-  --text-disabled: #b0b0b0;
-  --headlineXL: 12.4rem;
-  --headlineL: 10rem;
-  --headline1: 8rem;
-  --headline2: 6.4rem;
-  --headline3: 5.2rem;
-  --headline4: 4rem;
-  --headline5: 3.2rem;
-  --headline6: 2.4rem;
-  --title: 2rem;
-  --subTitle: 1.8rem;
-  --body: 1.6rem;
-  --smallText: 1.4rem;
-  --caption: 1.2rem;
-  --overline: 1rem;
-  --width: 128rem;
-  --height: 72rem;
-  --btnPad: -3.2rem;
-}
-
-
 /* 전체 공통 사용 */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'NanumSquareRound';
-  color: var(--text-primary);
+  font-family: var(--squareRoundB);
+  color: var(--textPrimary);
 }
 input::placeholder {
-  color: var(--text-disabled);
+  color: var(--textDisabled);
 }
-
 .a11yHidden {
   overflow: hidden;
   position: absolute;
@@ -81,23 +19,35 @@ input::placeholder {
   white-space: nowrap;
 }
 
-/* progress */
-.progress {
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 0.4rem;
-}
-.progress__bar {
-  background-color: var(--main-light);
-  border-radius: 0.4rem 0 0 0.4rem;
-}
-.progress__bar::after {
+/* circle mark, cross mark, closed btn */
+.circleMark::before, .crossMark::before, .crossMark::after,
+[class*="__btnClosed"]::before, [class*="__btnClosed"]::after,
+[class^="result__item"]::before, [class^="result__item"]::after,
+.ox .select__btnSelect.O::before, .ox .select__btnSelect.X::before, .ox .select__btnSelect.X::after,
+.answerSheet__correctAnswer span::before, .answerSheet__correctAnswer span::after {
   content: "";
-  background-color: var(--main-light);
-  border-radius: 0.8rem;
-  box-shadow: 0 0 0.8rem 0 rgba(0,0,0,0.6);
 }
-
-/* closed button */
+.circleMark::before,
+[class^="result__item"].correct::before,
+.ox .select__btnSelect.O::before,
+.answerSheet__correctAnswer.O span::before {
+  border-radius: 50%;
+}
+.crossMark::before,
+[class*="__btnClosed"]::before,
+[class^="result__item"].wrong::before,
+.ox .select__btnSelect.X::before,
+.answerSheet__correctAnswer.X span::before {
+  transform: rotate(45deg);
+}
+.crossMark::after,
+[class*="__btnClosed"]::after,
+[class^="result__item"].wrong::after,
+.ox .select__btnSelect.X::after,
+.answerSheet__correctAnswer.X span::after {
+  transform: rotate(-45deg);
+}
+/* closed Btn */
 [class*="__btnClosed"] {
   transition: transform 400ms ease;
 }
@@ -105,19 +55,12 @@ input::placeholder {
   transform: rotate(180deg);
 }
 [class*="__btnClosed"]::before, [class*="__btnClosed"]::after {
-  content: "";
   background-color: var(--white);
-  box-shadow: 0 0 0.8rem 0 rgba(0, 0, 0, 0.4);
-}
-[class*="__btnClosed"]::before {
-  transform: rotate(45deg);
-}
-[class*="__btnClosed"]::after {
-  transform: rotate(-45deg);
+  box-shadow: var(--shadowFloat);
 }
 [class*="__btnClosed"]:hover::before, [class*="__btnClosed"]:hover::after {
   background-color: var(--point3);
-  box-shadow: 0 0 0.4rem 0 rgba(0, 0, 0, 1);
+  box-shadow: var(--shadowPress);
 }
 
 /* box arrow pointer */
@@ -144,48 +87,41 @@ input::placeholder {
   border-left-color: var(--white);
 }
 
-code {
-  font-family: 'D2Coding' !important;
-  font-weight: normal !important;
-  letter-spacing: 0.05em !important;
-  color: var(--white) !important;
-  background-color: #2d2d2d !important;
-  border-radius: 0.2rem;
-}
 
 /* style */
+body {
+  font-family: var(--regularFont);
+  font-size: var(--body);
+}
 .wrap {
-  font-family: 'Noto Sans KR', sans-serif;
   background: url("../images/wrap_bg1.png") no-repeat left bottom,
               url("../images/wrap_bg2.png") no-repeat right top;
 }
-
 /* header */
 .header__logo {
   background: url("../images/logo.png") no-repeat;
 }
 .header__lesson {
   font-size: var(--headline6);
-  color: var(--sub-deep);
+  color: var(--subDeep);
 }
 
 /* main */
-.main {
+[class^="main__"] {
   background-color: var(--white);
-  box-shadow: 0 0 1.6rem 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadowBox);
 }
-
+/* video page */
 /* bookMark */
 .video__bookMark.open {
   color: var(--white);
   background-color: var(--dimd);
-  backdrop-filter: blur(0.8rem);
+  backdrop-filter: var(--blur);
   border-radius: 1.2rem 0 0 1.2rem;
 }
 .bookMark__btnOpen {
-  font-family: 'NanumSquareRound';
+  font-family: var(--squareRoundB);
   font-size: var(--subTitle);
-  font-weight: bold;
   line-height: 1.3;
   color: var(--point2);
   word-break: break-all;
@@ -193,65 +129,83 @@ code {
   border-right: 0;
   border-radius: 0.8rem 0 0 0.8rem;
   background-color: var(--white);
-  box-shadow: 0 0 0.8rem 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadowFloat);
 }
 .bookMark__btnOpen:hover, .video__bookMark.open .bookMark__btnOpen {
   color: var(--point3);
   background-color: var(--point2);
-  box-shadow: 0 0 0.2rem 0 rgba(0, 0, 0, 0.8);
+  box-shadow: var(--shadowPress);
 }
 .video__bookMark.open .bookMark__btnOpen {
-  border-radius: 0 0 0 0.8rem;
+  border-top-left-radius: 0;
 }
 .bookMark__list {
   font-size: var(--smallText);
-  counter-reset: number 0;
-}
-.bookMark__btnMoveTime:hover {
-  color: var(--main-light);
-  border-bottom: 0.1rem solid var(--main-light);
+  counter-reset: number;
 }
 .bookMark__btnMoveTime::before {
-  counter-increment: number 1;
+  counter-increment: number;
   content: counter(number)'.';
   font-size: var(--body);
 }
-
+.bookMark__btnMoveTime:hover {
+  color: var(--mainLight);
+  border-bottom: 0.1rem solid var(--mainLight);
+}
 /* skip */
 .video__btnSkip {
-  font-family: 'NanumSquareRound';
-  font-weight: bold;
+  font-family: var(--squareRoundEB);
   font-size: var(--headline5);
   color: var(--point1);
   border-radius: 5.2rem;
   background-color: var(--white);
   border: 0.4rem solid var(--point1);
-  box-shadow: 0.2rem 0.2rem 0.8rem 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadowFloat);
 }
 .video__btnSkip:hover {
   color: var(--point3);
   background-color: var(--point1);
   border-color: var(--point3);
-  box-shadow: 0.2rem 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadowPress);
 }
-
-/* controller 공통사용 */
+/* controller */
 [class*="controller__btn"] {
   background-repeat: no-repeat;
   background-position: center;
 }
 [class*="__total"] {
-  font-weight: bold;
-  color: var(--main-light);
+  color: var(--mainLight);
 }
-/* controller */
+/* progress */
+[class*="__progress"] {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 0.4rem;
+}
+.progress__bar {
+  background-color: var(--mainLight);
+  border-radius: 0.4rem 0 0 0.4rem;
+}
+.progress__bar::after {
+  content: "";
+  background-color: var(--mainLight);
+  border-radius: 0.8rem;
+  box-shadow: 0 0 0.8rem 0 rgba(0,0,0,0.6);
+}
+/* controller style */
 .controller {
-  font-family: 'NanumSquareRound';
+  font-family: var(--squareRoundB);
   font-size: var(--title);
   line-height: 1;
   color: var(--white);
   background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-  backdrop-filter: blur(0.8rem);
+  backdrop-filter: var(--blur);
+}
+.videoTime__progress {
+  box-shadow: 0 0 0.8rem 0 rgba(0, 0, 0, 0.15)
+}
+.controller__videoTime {
+  font-family: var(--regularFont);
+  font-size: var(--caption);
 }
 .controller__btnPlay {
   background-image: url("../images/controller/icon__play.png");
@@ -271,14 +225,6 @@ code {
 .controller__btnReplay:hover {
   background-image: url("../images/controller/icon__replay--hover.png");
 }
-.controller__videoTime {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: var(--caption);
-}
-.controller__videoTime::after {
-  content: "";
-  background-color: rgba(255, 255, 255, 0.4);
-}
 .controller__btnVolume {
   background-image: url("../images/controller/icon__volume.png");
 }
@@ -296,7 +242,7 @@ code {
   background-position-y: center;
 }
 [class*="playRate__btn"]:hover {
-  color: var(--main-light);
+  color: var(--mainLight);
 }
 .playRate__btnOpen {
   background-image: url("../images/controller/icon__xL.png");
@@ -306,9 +252,9 @@ code {
   background-image: url("../images/controller/icon__xL--hover.png");
 }
 .playRate__btnChangeRate {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: var(--regularFont);
   font-size: var(--body);
-  font-weight: 600;
+  font-weight: --fontBold;
   background-image: url("../images/controller/icon__x.png");
 }
 .playRate__btnChangeRate:hover {
@@ -316,7 +262,7 @@ code {
 }
 .playRate__list {
   background-color: var(--dimd);
-  backdrop-filter: blur(0.8rem);
+  backdrop-filter: var(--blur);
   border-radius: 0.8rem;
 }
 .controller__btnIndex {
@@ -366,43 +312,31 @@ code {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
+/* nav */
 .nav {
-  font-weight: bold;
-  color: var(--text-secondary);
+  color: var(--textSecondary);
   background-color: var(--dimd);
-  backdrop-filter: blur(0.8rem);
+  backdrop-filter: var(--blur);
 }
 .nav__list {
   background-color: var(--white);
   border: 0.2rem solid var(--point1);
   border-radius: 1.2rem;
-  box-shadow: 0 0 1.6rem 0 rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadowBox);
 }
 .nav__itemTitle {
-  font-family: 'NanumSquareRound';
+  font-family: var(--squareRoundEB);
   font-size: var(--title);
   letter-spacing: 0.1em;
-  background-color: var(--btn-disabled);
+  background-color: var(--divider);
 }
 .nav__itemWrap.active .nav__itemTitle {
   color: var(--point3);
   background-color: var(--point1);
 }
-.nav__subList {
-  width: 100%;
-}
-.nav__subLink {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
 .nav__subLink::before {
   content: "";
-  display: block;
-  width: 0.4rem;
-  height: 0.4rem;
-  margin-right: 0.8rem;
-  background-color: var(--text-secondary);
+  background-color: var(--textSecondary);
   transform: rotate(45deg);
 }
 .active .nav__subLink::before, .nav__subLink:hover::before {
@@ -410,6 +344,12 @@ code {
 }
 .active .nav__subLink, .nav__subLink:hover {
   color: var(--point1);
+}
+.active .nav__subLink:hover {
+  text-decoration: none;
+}
+.nav__subLink:hover {
+  text-decoration: underline;
 }
 
 /* script */
@@ -420,34 +360,32 @@ code {
   border: 0.2rem solid var(--point1);
   border-bottom: none;
   background-color: var(--dimd);
-  backdrop-filter: blur(0.8rem);
+  backdrop-filter: var(--blur);
 }
 
 /* help */
 .help {
   background-color: var(--white);
 }
-/* help nav */
 .help__helpNav {
   background: var(--point2) url("../images/wrap_bg2.png") no-repeat right -4rem;
   background-size: 30%;
 }
 .helpNav__btnMovePage {
-  font-family: 'NanumSquareRound';
+  font-family: var(--squareRoundEB);
   font-size: var(--title);
-  font-weight: bold;
   color: var(--point1);
   background-color: var(--point3);
   border-radius: 1.2rem 1.2rem 0 0;
   border-style: solid;
   border-width: 0.2rem 0.2rem 0.1rem 0.2rem;
   border-color: transparent;
-  border-bottom-color: var(--border-gray);
+  border-bottom-color: var(--border);
   box-shadow: inset 0 -0.4rem 0.4rem 0 rgba(0, 0, 0, 0.05);
 }
 .helpNav__btnMovePage:hover {
   border-color: var(--point1);
-  border-bottom-color: var(--border-gray);
+  border-bottom-color: var(--border);
   text-decoration: underline;
 }
 .active .helpNav__btnMovePage {
@@ -456,38 +394,37 @@ code {
   border-bottom-color: transparent;
   text-decoration: none;
   box-shadow: none;
-  cursor: default;
 }
+
 /* learningmap */
 .learningmap__list {
-  counter-reset: number 0;
-}
-.learningmap__item {
-  color: var(--text-primary);
+  counter-reset: number;
 }
 .learningmap__item::before {
-  counter-increment: number 1;
+  counter-increment: number;
   content: counter(number);
-  font-family: 'NanumSquareRound';
+  font-family: var(--squareRoundB);
   font-size: var(--subTitle);
-  font-weight: bold;
   color: var(--white);
-  background-color: var(--text-disabled);
+  background-color: var(--textDisabled);
   clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
 }
 .learningmap__item.current::before {
   color: var(--point3);
   background-color: var(--point1);
 }
+.learningmap__title {
+  color: var(--textPrimary);
+}
 /* pageview */
 .pageview__imgWrap {
   background: url("../images/help/pageview.png") no-repeat center;
 }
 [class*="pageview__btnTarget"] {
-  font-family: 'NanumSquareRound';
+  font-family: var(--squareRoundB);
   font-weight: bold;
   color: var(--white);
-  background-color: var(--text-disabled);
+  background-color: var(--textDisabled);
   clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
 }
 [class*="pageview__btnTarget"]:hover {
@@ -545,39 +482,58 @@ code {
   background: url("../images/help/keyboard.png") no-repeat center;
 }
 
-.quizPage__intro {
-  font-family: 'NanumSquareRound';
-  background: linear-gradient(134deg, #FBB02E 0%, #FEDF40 100%);
+/* quiz */
+/* quiz 공통 사용 */
+code {
+  font-family: var(--coding) !important;
+  letter-spacing: 0.05em !important;
+  color: var(--white) !important;
+  background-color: #2d2d2d !important;
+  border-radius: 0.2rem;
 }
-.intro__title {
-  font-size: var(--headlineL);
-  font-weight: bolder;
-  letter-spacing: 0.1em;
-  color: var(--sub-deep);
+.quizPage__intro, .quizPage__result {
+  background: var(--gradient);
 }
-.intro__exp {
+.intro__btnStart, .select__btnAnswerCheck, .result__btnRetry {
+  font-family: var(--squareRoundB);
   font-size: var(--headline6);
-  text-align: center;
-}
-.intro__exp em {
-  font-size: 1.1em;
-  font-weight: bolder;
-  font-style: normal;
-  color: var(--point2);
-}
-.intro__btnStart, .result__btnRetry {
-  font-size: var(--headline6);
-  font-weight: bold;
   letter-spacing: 0.2em;
   color: var(--point3);
   background-color: var(--point1);
   border-radius: 0.4rem;
   border: 0.2rem solid transparent;
 }
-.intro__btnStart:hover, .result__btnRetry:hover {
-  text-decoration: underline;
+.intro__btnStart:hover, .select__btnAnswerCheck:hover, .result__btnRetry:hover {
   border-color: var(--point3);
 }
+/* o, x mark */
+[class^="result__item"].correct::before,
+.ox .select__btnSelect.O::before {
+  border: 0.4rem solid var(--textSecondary);
+}
+[class^="result__item"].wrong::before, [class^="result__item"].wrong::after,
+.ox .select__btnSelect.X::before, .ox .select__btnSelect.X::after {
+  background-color: var(--textSecondary);
+  border-radius: 0.2rem;
+}
+/* quiz intro */
+.intro__title {
+  font-family: var(--squareRoundEB);
+  font-size: var(--headlineXL);
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+  color: var(--subDeep);
+}
+.intro__exp {
+  font-size: var(--headline6);
+  text-align: center;
+}
+.intro__exp em {
+  font-family: var(--squareRoundEB);
+  font-style: normal;
+  color: var(--point2);
+}
+/* quiz */
 .quiz__question {
   font-size: var(--headline6);
   border-bottom: 0.1rem dashed var(--point1);
@@ -610,9 +566,8 @@ code {
   border-bottom: 0.1rem solid var(--point2);
 }
 .quiz__additional {
-  font-family: 'NanumSquareRound';
+  font-family: var(--squareRoundEB);
   font-size: var(--title);
-  font-weight: bold;
   color: var(--point3);
   background-color: var(--point2);
   border-radius: 0.4rem;
@@ -622,7 +577,7 @@ code {
 }
 /* 사지선다 */
 .quiz__select.sa {
-  counter-reset: number 0;
+  counter-reset: number;
 }
 .sa .select__item::before {
   font-size: var(--smallText);
@@ -664,23 +619,6 @@ code {
   border-radius: 1.2rem;
   background-color: var(--light-gray);
 }
-.ox .select__btnSelect.O::before, .ox .select__btnSelect.X::before, .ox .select__btnSelect.X::after {
-  content: "";
-}
-.ox .select__btnSelect.O::before {
-  border: 0.4rem solid var(--text-secondary);
-  border-radius: 50%;
-}
-.ox .select__btnSelect.X::before, .ox .select__btnSelect.X::after {
-  background-color: var(--text-secondary);
-  border-radius: 0.2rem;
-}
-.ox .select__btnSelect.X::before {
-  transform: rotate(45deg);
-}
-.ox .select__btnSelect.X::after {
-  transform: rotate(-45deg);
-}
 .ox .select__btnSelect:hover {
   background-color: var(--point1);
   border: 0.2rem solid var(--point3);
@@ -701,23 +639,11 @@ code {
   border-color: var(--point1);
   outline: none;
 }
-.select__btnAnswerCheck {
-  font-size: var(--title);
-  font-weight: bold;
-  color: var(--point3);
-  background-color: var(--point1);
-  border-radius: 0.4rem;
-  border: 0.2rem solid transparent;
-}
-.select__btnAnswerCheck:hover {
-  border-color: var(--point3);
-  text-decoration: underline;
-}
 /* 해설지 */
 .quiz__answerSheet {
   box-shadow: 0 0 1.6rem 0 rgba(0, 0, 0, 0.3);
   background-color: var(--dimd);
-  backdrop-filter: blur(0.8rem);
+  backdrop-filter: var(--blur);
 }
 .answerSheet__inner {
   background: var(--white);
@@ -745,21 +671,14 @@ code {
 .answerSheet__exp::before {
   content: "해설";
 }
-.answerSheet__correctAnswer.O span::before, .answerSheet__correctAnswer.X span::before, .answerSheet__correctAnswer.X span::after {
-  content: "";
+.answerSheet__correctAnswer span::before, .answerSheet__correctAnswer span::after {
   display: block;
 }
 .answerSheet__correctAnswer.O span::before {
-  border-radius: 2rem;
+  border: 0.2rem solid var(--point2);
 }
 .answerSheet__correctAnswer.X span::before, .answerSheet__correctAnswer.X span::after {
   background-color: var(--point2);
-}
-.answerSheet__correctAnswer.X span::before {
-  transform: rotate(45deg);
-}
-.answerSheet__correctAnswer.X span::after {
-  transform: rotate(-45deg);
 }
 .answerSheet__btnNextStep {
   font-size: var(--subTitle);
@@ -773,14 +692,14 @@ code {
   color: var(--point3);
   background-color: var(--point1);
 }
+/* alert message */
 .quiz__alert {
   background-color: var(--dimd);
-  backdrop-filter: blur(0.8rem);
+  backdrop-filter: var(--blur);
 }
 .alert__textBox {
-  font-family: 'NanumSquareRound';
+  font-family: var(--squareRoundEB);
   font-size: var(--headline4);
-  font-weight: bold;
   line-height: 1.2;
   color: var(--point3);
   text-align: center;
@@ -791,7 +710,6 @@ code {
 .alert__textBox::before {
   content: "!";
   font-size: 28rem;
-  font-weight: bolder;
 }
 .alert__textBox span {
   text-shadow: 0 0 0rem var(--point1),
@@ -804,34 +722,14 @@ code {
                -0.3rem 0.3rem 0 var(--point1),
                -0.3rem -0.3rem 0 var(--point1);
 }
-.quizPage__result {
-  background: linear-gradient(134deg, #FBB02E 0%, #FEDF40 100%);
-}
+/* quiz result */
 .result__title {
   font-size: var(--headline1);
-  font-weight: bold;
-  color: var(--sub-deep);
-  text-align: center;
+  color: var(--subDeep);
 }
 [class^="result__item"] {
   border-radius: 1.2rem;
   border: 0.2rem solid var(--point2);
   background-color: var(--white);
 }
-[class^="result__item"]::before, [class^="result__item"]::after {
-  content: "";
-}
-[class^="result__item"].correct::before {
-  border-radius: 50%;
-  border: 0.4rem solid var(--text-secondary);
-}
-[class^="result__item"].wrong::before, [class^="result__item"].wrong::after {
-  background-color: var(--text-secondary);
-  border-radius: 0.2rem;
-}
-[class^="result__item"].wrong::before {
-  transform: rotate(45deg);
-}
-[class^="result__item"].wrong::after {
-  transform: rotate(-45deg);
-}
+

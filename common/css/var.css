@@ -51,16 +51,13 @@
   --fontMedium: 500;
   --fontBold: 700;
   --fontBlack: 900;
-  --squareRoundL: 'NanumSquareRoundL';
   --squareRound: 'NanumSquareRound';
   --squareRoundB: 'NanumSquareRoundB';
   --squareRoundEB: 'NanumSquareRoundEB';
   --coding: 'NanumGothicCodingLigature';
-  --codingB: 'NanumGothicCodingLigatureBold';
 
   --width: 128rem;
   --height: 72rem;
-  --btnPad: -3.2rem;
 
   --blur: blur(0.8rem);
   --shadowBox: 0 0 1.6rem 0 rgba(0, 0, 0, 0.25);

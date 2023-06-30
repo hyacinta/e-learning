@@ -35,6 +35,10 @@
   left: 0;
 }
 
+.open {
+  z-index: 9999;
+}
+
 /* circle mark, cross mark, closed */
 [class*="__btnClosed"]::before, [class*="__btnClosed"]::after,
 [class^="result__item"]::before, [class^="result__item"]::after,

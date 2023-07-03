@@ -210,11 +210,17 @@ body {
 .controller__btnPlay {
   background-image: url("../images/controller/icon__play.png");
 }
+.controller__btnPlay::after {
+  content: "일시정지";
+}
 .controller__btnPlay:hover {
   background-image: url("../images/controller/icon__play--hover.png");
 }
 .controller__btnPlay.pause {
   background-image: url("../images/controller/icon__pause.png");
+}
+.controller__btnPlay.pause::after {
+  content: "재생하기";
 }
 .controller__btnPlay.pause:hover {
   background-image: url("../images/controller/icon__pause--hover.png");
@@ -222,17 +228,26 @@ body {
 .controller__btnReplay {
   background-image: url("../images/controller/icon__replay.png");
 }
+.controller__btnReplay::after {
+  content: "다시보기";
+}
 .controller__btnReplay:hover {
   background-image: url("../images/controller/icon__replay--hover.png");
 }
 .controller__btnVolume {
   background-image: url("../images/controller/icon__volume.png");
 }
+.controller__btnVolume::after {
+  content: "음소거";
+}
 .controller__btnVolume:hover {
   background-image: url("../images/controller/icon__volume--hover.png");
 }
 .controller__btnVolume.mute {
   background-image: url("../images/controller/icon__mute.png");
+}
+.controller__btnVolume.mute::after {
+  content: "음소거 해제";
 }
 .controller__btnVolume.mute:hover {
   background-image: url("../images/controller/icon__mute--hover.png");
@@ -247,6 +262,9 @@ body {
 .playRate__btnOpen {
   background-image: url("../images/controller/icon__xL.png");
   background-position-x: 0.4rem;
+}
+.playRate__btnOpen::after {
+  content: "재생 속도 변경하기";
 }
 .playRate__btnOpen:hover {
   background-image: url("../images/controller/icon__xL--hover.png");
@@ -268,11 +286,17 @@ body {
 .controller__btnIndex {
   background-image: url("../images/controller/icon__index.png");
 }
+.controller__btnIndex::after {
+  content: "index 열기";
+}
 .controller__btnIndex:hover {
   background-image: url("../images/controller/icon__index--hover.png");
 }
 .controller__btnInfo {
   background-image: url("../images/controller/icon__info.png");
+}
+.controller__btnInfo::after {
+  content: "학습 도우미 열기";
 }
 .controller__btnInfo:hover {
   background-image: url("../images/controller/icon__info--hover.png");
@@ -280,11 +304,17 @@ body {
 .controller__btnScript {
   background-image: url("../images/controller/icon__script.png");
 }
+.controller__btnScript::after {
+  content: "스크립트 열기";
+}
 .controller__btnScript:hover {
   background-image: url("../images/controller/icon__script--hover.png");
 }
 .controller__btnFullscreen {
   background-image: url("../images/controller/icon__fullscreen.png");
+}
+.controller__btnFullscreen::after {
+  content: "전체화면 보기";
 }
 .controller__btnFullscreen:hover {
   background-image: url("../images/controller/icon__fullscreen--hover.png");
@@ -292,17 +322,35 @@ body {
 .controller__btnLock {
   background-image: url("../images/controller/icon__lock.png");
 }
+.controller__btnLock::after {
+  content: "컨트롤러 잠금해제";
+}
 .controller__btnLock:hover {
   background-image: url("../images/controller/icon__lock--hover.png");
 }
+.controller__btnLock.unLock {
+  background-image: url("../images/controller/icon__unlock.png");
+}
+.controller__btnLock.unLock::after {
+  content: "컨트롤러 잠금";
+}
+.controller__btnLock.unLock:hover {
+  background-image: url("../images/controller/icon__unlock--hover.png");
+}
 .controller__btnPrevPage {
   background-image: url("../images/controller/icon__prevPage.png");
+}
+.controller__btnPrevPage::after {
+  content: "이전 페이지 이동하기";
 }
 .controller__btnPrevPage:hover {
   background-image: url("../images/controller/icon__prevPage--hover.png");
 }
 .controller__btnNextPage {
   background-image: url("../images/controller/icon__nextPage.png");
+}
+.controller__btnNextPage::after {
+  content: "다음 페이지 이동하기";
 }
 .controller__btnNextPage:hover {
   background-image: url("../images/controller/icon__nextPage--hover.png");

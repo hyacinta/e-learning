@@ -1,9 +1,12 @@
-const headerUI = () => `<header class="header flex--between">
-  <h1 class="header__logo">front-end Developer KIM KYU REE</h1>
-  <h2 class="header__lesson">1. 자바스크립트의 배열</h2>
+const headerUI = (
+  course,
+  { id, title }
+) => `<header class="header flex--between">
+  <h1 class="header__logo">${course}</h1>
+  <h2 class="header__lesson"><span class="lesson__number">${id}</span><span class="lesson__title">${title}</span></h2>
 </header>`;
 
-const mainUI = () => `<main class="main__quizPage position--center"></main>`;
+const mainUI = (type) => `<main class="main__${type} position--center"></main>`;
 
 const videoPageUI = () => `<video class="video" autoplay>
   <source src="/media/cc0-videos/flower.mp4" type="video/mp4">
@@ -16,9 +19,13 @@ const bookMarkUI = () => `<div class="video__bookMark">
   </ol>
 </div>`;
 
-const bookMarkListUI = () => `<li class="bookMark__item">
-  <button type="button" class="bookMark__btnMoveTime" data-timesynk="1">북마크 1</button>
-</li>`;
+const bookMarkListUI = (list) =>
+  list.map(
+    ({ id, title }) => `<li class="bookMark__item">
+  <button type="button" class="bookMark__btnMoveTime" data-timesynk="${id}">${title}</button>
+</li>
+`
+  );
 
 const skipBtnUI = () =>
   `<button type="button" class="video__btnSkip">SKIP</button>`;
@@ -28,65 +35,98 @@ const quizPageUI = () =>
 
 const quizIntroUI = () => `<section class="quizPage__intro flex--center">
   <h4 class="intro__title">QUIZ</h4>
-  <p class="intro__exp">지금까지 학습한 내용을 퀴즈를 통해 확인해 보겠습니다.<br>총 <em>2개</em>의 문제가 주어지며 기회는 <em>2번</em> 입니다.</p>
+  <p class="intro__exp">${quizIntroText}</p>
   <button type="button" class="intro__btnStart">START</button>
 </section>`;
 
 const quizPaperUI = () =>
   `<section class="quizPage__quiz flex--start"></section>`;
 
-const quizQuestionUI = () => `<div class="quiz__question flex--start">
-  <div class="question__number">1</div>
+const quizQuestionUI = ({
+  id,
+  type,
+  oxQuestion,
+  question,
+}) => `<div class="quiz__question flex--start">
+  <div class="question__number">${id}</div>
   <div class="question__titleWrap">
-    <p class="question__oxExp">아래의 설명이 맞으면 O, 틀리면 X를 선택하세요.</p>
-    <p class="question__text">앱 사용 <code> hello =></code>보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은? 앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은?</p>
+    ${type === "ox" ? `<p class="question__oxExp">${oxQuestion}</p>` : ``}
+    <p class="question__text">${question}</p>
   </div>
 </div>`;
 
-const additionalUI = () => `<ul class="quiz__additional code flex--center">
-  <li class="additional__item">ㄱ, ㄴ, ㄷ, ㄹ</li>
-  <li class="additional__item">ㄱ, ㄴ, ㄷ, ㄹ</li>
-  <li class="additional__item">ㄱ, ㄴ, ㄷ, ㄹ</li>
-  <li class="additional__item">ㄱ, ㄴ, ㄷ, ㄹ</li>
-  </ul>
-  <code class="quiz__additional code flex--center">
-  hello => 
-</code>`;
+const additionalUI = (type, additional) => {
+  if (type === "list") {
+    return `<ul class="quiz__additional code flex--center">
+    ${additional
+      .map((item) => `<li class="additional__item">${item}</li>`)
+      .join("")}
+  </ul>`;
+  }
+  if (type === "code") {
+    return `<code class="quiz__additional code flex--center">${additional}</code>`;
+  }
+  return `<p class="quiz__additional flex--center">${additional}</p>`;
+};
 
-const selectUI = () => `<ul class="quiz__select sa">
-  <li class="select__item flex--start myAnswer"><button type="button" class="select__btnSelect flex--start" data-select="1">선택<code>hello =></code></button></li>
-  <li class="select__item flex--start correctAnswer"><button type="button" class="select__btnSelect flex--start" data-select="2">선택</button></li>
-  <li class="select__item flex--start"><button type="button" class="select__btnSelect flex--start" data-select="3">선택</button></li>
-  <li class="select__item flex--start"><button type="button" class="select__btnSelect flex--start" data-select="4">선택</button></li>
-  </ul>
-  <ul class="quiz__select ox flex--center">
-  <li class="select__item myAnswer"><button type="button" class="select__btnSelect O" data-select="O">맞다</button></li>
-  <li class="select__item"><button type="button" class="select__btnSelect X" data-select="X">틀리다</button></li>
-  </ul>
-  <div class="quiz__select ju flex--center">
-  <input type="text" class="select__input" placeholder="정답을 입력하세요.">
-  <button type="button" class="select__btnAnswerCheck">정답확인</button>
-</div>`;
+const selectUI = ({ type, distractor }) => {
+  if (type === "sa") {
+    return `<ul class="quiz__select sa">${distractor
+      .map(
+        (item, idx) =>
+          `<li class="select__item flex--start"><button type="button" class="select__btnSelect flex--start" data-select="${
+            idx + 1
+          }">${item}</button></li>`
+      )
+      .join("")}</ul>`;
+  }
+  if (type === "ox") {
+    return `<ul class="quiz__select ox flex--center">
+    <li class="select__item"><button type="button" class="select__btnSelect O" data-select="O">맞다</button></li>
+    <li class="select__item"><button type="button" class="select__btnSelect X" data-select="X">틀리다</button></li>
+    </ul>`;
+  }
+  if (type === "ju") {
+    return `<div class="quiz__select ju flex--center">
+    <input type="text" class="select__input" placeholder="정답을 입력하세요.">
+    <button type="button" class="select__btnAnswerCheck">정답확인</button>
+  </div>`;
+  }
+};
 
-const answerSheetUI = () => `<div class="quiz__answerSheet position--bottom">
+const answerSheetUI = ({
+  id,
+  type,
+  answer,
+  explanation,
+}) => `<div class="quiz__answerSheet position--bottom">
   <div class="answerSheet__inner">
-    <p class="answerSheet__correctAnswer X flex--start"><span></span></p>
-    <p class="answerSheet__exp flex--start">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세 </p>
+    <p class="answerSheet__correctAnswer flex--start">${
+      type === "ox" ? `<span>${answer}</span>` : `${answer}`
+    }</p>
+    <p class="answerSheet__exp flex--start">${explanation}</p>
   </div>
-  <button type="button" class="answerSheet__btnNextStep">다음문제</button>
+  <button type="button" class="answerSheet__btnNextStep">${
+    id === quizInfo.length ? "결과보기" : "다음문제"
+  }</button>
 </div>`;
 
 const alertUI = () => `<div class="quiz__alert position--center flex--center">
   <p class="alert__textBox flex--center"><span>다시 한 번 풀어보세요.</span></p>
 </div>`;
 
-const quizResultUI = () => `<section class="quizPage__result flex--center">
+const quizResultUI = (
+  result
+) => `<section class="quizPage__result flex--center">
   <h4 class="result__title">결과보기</h4>
-  <ul class="result__list flex--center">
-    <li class="result__item1 correct">맞혔습니다.</li>
-    <li class="result__item2 wrong">틀렸습니다.</li>
-    <li class="result__item3 correct">맞혔습니다.</li>
-  </ul>
+  <ul class="result__list flex--center">${result
+    .map(
+      (item) =>
+        `<li class="result__item1 ${item}">${
+          item === "correct" ? "맞혔습니다." : "틀렸습니다."
+        }</li>`
+    )
+    .join("")}</ul>
   <button type="button" class="result__btnRetry">다시풀기</button>
 </section>`;
 
@@ -133,56 +173,65 @@ const controllerUI =
 
 const navUI = () => `<nav class="nav position--right flex--center">
   <ul class="nav__list">
-    <li class="nav__itemWrap active">
-      <p class="nav__itemTitle">Front-end</p>
-      <ul class="nav__subList">
-        <li class="nav__subItem"><a href="" class="nav__subLink flex--start">주제 & 목표</a></li>
-      </ul>
-    </li>
-    <li class="nav__itemWrap">
-      <p class="nav__itemTitle">Developer</p>
-      <ul class="nav__subList">
-        <li class="nav__subItem"><a href="" class="nav__subLink flex--start">본 학습</a></li>
-      </ul>
-    </li>
-    <li class="nav__itemWrap">
-      <p class="nav__itemTitle">KIM KYU REE</p>
-      <ul class="nav__subList">
-        <li class="nav__subItem"><a href="" class="nav__subLink flex--start">평가</a></li>
-        <li class="nav__subItem"><a href="" class="nav__subLink flex--start">학습 정리</a></li>
-      </ul>
-    </li>
+  ${pageGroup
+    .map(
+      ({ groupTitle, group }) => `<li class="nav__itemWrap">
+  <p class="nav__itemTitle">${groupTitle}</p>
+  <ul class="nav__subList">
+      ${group
+        .map(
+          (item) =>
+            `<li class="nav__subItem"><a href="" class="nav__subLink flex--start" data-navmovetarget="${item}">${
+              pageInfo[item - 1].title
+            }</a></li>`
+        )
+        .join("")}
+  </ul>
+</li>`
+    )
+    .join("")}
   </ul>
   <button type="button" class="nav__btnClosed--40">닫기</button>
 </nav>`;
 
-const scriptUI = () => `<section class="script position--bottom">
+const scriptUI = (script) => `<section class="script position--bottom">
   <h3 class="a11yHidden">스크립트</h3>
   <div class="script__wrapBox">
-    <p class="script__paragraph">어떤 페이지로 이동하는 버튼인지 정확하게 알려주고 싶어요. 어떤 페이지로 이동하는 버튼인지 정확하게 알려주고 싶어요. 어떤 페이지로 이동하는 버튼인지 정확하게 알려주고 싶어요. 어떤 페이지로 이동하는 버튼인지 정확하게 알려주고 싶어요. </p>
-    <p class="script__paragraph">어떤 페이지로 이동하는 버튼인지 정확하게 알려주고 싶어요. 어떤 페이지로 이동하는 버튼인지 정확하게 알려주고 싶어요. 어떤 페이지로 이동하는 버튼인지 정확하게 알려주고 싶어요. 어떤 페이지로 이동하는 버튼인지 정확하게 알려주고 싶어요. </p>
+    ${script.map((item) => `<p class="script__paragraph">${item}</p>`).join("")}
   </div>
   <button type="button" class="script__btnClosed--24">닫기</button>
 </section>`;
 
-const helpUI = () => `<section class="help position--center">
-      <h3 class="a11yHidden">학습도우미</h3>
-      <nav class="help__helpNav">
-      </nav>
-      <div class="help__contentsWrap pageview">
-        <h4 class="a11yHidden">러닝맵</h4>
-      </div>
-      <button type="button" class="help__btnClosed--40">닫기</button>
-    </section>`;
+const helpUI = () => `<section class="help open position--center">
+  <h3 class="a11yHidden">학습도우미</h3>
+  <nav class="help__helpNav">
+  </nav>
+  <div class="help__contentsWrap ${helpInfo[currentHelpPage - 1].type}">
+    <h4 class="a11yHidden">러닝맵</h4>
+  </div>
+  <button type="button" class="help__btnClosed--40">닫기</button>
+</section>`;
 
 const helpNavUI = () => `<ul class="helpNav__list flex--start">
-  <li class="helpNav__item active"><button type="button" class="helpNav__btnMovePage">러닝맵</button></li>
-  <li class="helpNav__item"><button type="button" class="helpNav__btnMovePage">화면 안내</button></li>
-  <li class="helpNav__item"><button type="button" class="helpNav__btnMovePage">키보드 제어</button></li>
+  ${helpInfo
+    .map(
+      ({ id, title }) =>
+        `<li class="helpNav__item ${
+          id === currentPopSubPage ? "active" : ""
+        }"><button type="button" class="helpNav__btnMovePage" data-helpmovetarget="${id}">${title}</button></li>`
+    )
+    .join("")}
 </ul>`;
 
 const learningMapUI = () => `<ol class="learningmap__list flex--between">
-  <li class="learningmap__item current flex--start"><span class="learningmap__title">러닝맵 타이틀</span></li>
+  ${lessonList
+    .map(
+      ({ id, title }) =>
+        `<li class="learningmap__item ${
+          id === currentChapter ? "current" : ""
+        } flex--start"><span class="learningmap__title">${title}</span></li>`
+    )
+    .join("")}
 </ol> `;
 
 const pageviewUI = () => `<div class="pageview__imgWrap">

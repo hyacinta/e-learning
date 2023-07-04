@@ -11,27 +11,38 @@ let isProgressDraggable = true;
 
 $(document).ready(() => {
   setHeader();
-  setMain();
+  setMain(pageInfo[currentPage - 1]);
   setNav();
   setScript();
-  sethelp();
+  setHelp();
 });
 
 const setHeader = () => {
-  $(".wrap").append(headerUI());
+  $(".wrap").append(headerUI(courseTitle, lessonList[currentChapter - 1]));
 };
 
-const setMain = () => {
-  $(".wrap").append(mainUI());
-  setVideoPage();
-  setQuizPage();
+const setMain = ({ type, subType }) => {
+  $(".wrap").append(mainUI(type));
+  switch (type) {
+    case "videoPage":
+      setVideoPage(subType);
+      break;
+    case "quizPage":
+      setQuizPage();
+    default:
+      setVideoPage();
+      break;
+  }
   setController();
 };
 
-const setVideoPage = () => {
+const setVideoPage = (type) => {
   $(".main__videoPage").append(videoPageUI());
+  if (type === "video-i") {
+    setSkipBtn();
+    return;
+  }
   setBookmark();
-  setSkipBtn();
 };
 
 const setBookmark = () => {
@@ -40,7 +51,7 @@ const setBookmark = () => {
 };
 
 const setBookmarkList = () => {
-  $(".bookMark__list").append(bookMarkListUI());
+  $(".bookMark__list").append(bookMarkListUI(bookMarkInfo));
 };
 
 const setSkipBtn = () => {
@@ -50,37 +61,28 @@ const setSkipBtn = () => {
 const setQuizPage = () => {
   $(".main__quizPage").append(quizPageUI());
   // setQuizIntro();
-  setQuizPaper();
-  // setQuizResult();
+  // setQuizPaper(quizInfo[currentQuizNum - 1]);
+  setQuizResult();
 };
 
 const setQuizIntro = () => {
   $(".main__quizPage").append(quizIntroUI());
 };
 
-const setQuizPaper = () => {
+const setQuizPaper = (currentQuiz) => {
+  const { additionalType, additional } = currentQuiz;
   $(".main__quizPage").append(quizPaperUI());
-  // setQuestion();
-  // setAdditional();
-  // setSelect();
-  // setAnswerSheet();
-  // setAlert();
+  $(".quizPage__quiz").append(quizQuestionUI(currentQuiz));
+  if (additionalType !== null) {
+    $(".quizPage__quiz").append(additionalUI(additionalType, additional));
+  }
+  $(".quizPage__quiz").append(selectUI(currentQuiz));
+  setAnswerSheet(currentQuiz);
+  setAlert();
 };
 
-const setQuestion = () => {
-  $(".quizPage__quiz").append(quizQuestionUI());
-};
-
-const setAdditional = () => {
-  $(".quizPage__quiz").append(additionalUI());
-};
-
-const setSelect = () => {
-  $(".quizPage__quiz").append(selectUI());
-};
-
-const setAnswerSheet = () => {
-  $(".quizPage__quiz").append(answerSheetUI());
+const setAnswerSheet = (currentQuiz) => {
+  $(".quizPage__quiz").append(answerSheetUI(currentQuiz));
 };
 
 const setAlert = () => {
@@ -88,7 +90,7 @@ const setAlert = () => {
 };
 
 const setQuizResult = () => {
-  $(".main__quizPage").append(quizResultUI());
+  $(".main__quizPage").append(quizResultUI(myQuizResult));
 };
 
 const setController = () => {
@@ -100,10 +102,10 @@ const setNav = () => {
 };
 
 const setScript = () => {
-  $(".wrap").append(scriptUI());
+  $(".wrap").append(scriptUI(scriptText[currentPage - 1]));
 };
 
-const sethelp = () => {
+const setHelp = () => {
   $(".wrap").append(helpUI());
   setHelpNav();
   setLearningMap();

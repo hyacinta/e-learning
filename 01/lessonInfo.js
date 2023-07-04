@@ -15,7 +15,8 @@ const bookMarkInfo = [
 // question - "텍스트로 입력할 것" <em></em> - 부정문을 강조할 경우 사용
 // oxQuestion - ox 퀴즈일 경우 추가 지시문을 "텍스트로 입력할 것" or 사지선다형일 경우 ""
 // question - 문제를 "텍스트로 입력할 것"
-// additional - 문제에 보기가 필요할 경우 - 배열안에 "텍스트로 입력" or "텍스트 입력" or 필요 없을 경우 빈 배열
+// additionalType - 문제에 보기가 타입을 작성 (list, string, code), 필요 없을 경우 null;
+// additional - 문제에 보기가 필요할 경우 - 배열안에 "텍스트로 입력" or "텍스트 입력"
 // distractor - 사지 선다형 선택 리스트를 배열 안에 "텍스트로 입력할 것" or 필요 없을 경우 빈 배열
 // answer - 정답 입력, OX퀴즈: "O" or "X", 사지선다: "1" or "2" or "3" or "4", 주관식: ["텍스트 입력"]
 // explanation - 정답에 대한 해설 "텍스트로 입력"
@@ -26,8 +27,8 @@ const quizInfo = [
     oxQuestion: "",
     question:
       "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은?",
-    additionalType: "code",
-    additional: [],
+    additionalType: "list",
+    additional: [1, 2, 3, 4],
     distractor: [
       "ㄱ, ㄴ, ㄷ, ㄹ",
       "ㄱ, ㄴ, ㄷ, ㄹ",

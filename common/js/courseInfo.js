@@ -129,18 +129,17 @@ const pageInfo = [
 
 // 퀴즈 정보 및 설정
 const quizIntroText =
-  "지금까지 학습한 내용을 퀴즈를 통해 확인해 보겠습니다.<br>총 2개의 문제가 주어지며 기회는 2번 입니다.";
+  "지금까지 학습한 내용을 퀴즈를 통해 확인해 보겠습니다.<br>총 <em>2개</em>의 문제가 주어지며 기회는 <em>2번</em>입니다.";
 const quizChanceInit = 2;
 let quizChance = quizChanceInit;
 let currentQuizNum = 1;
-let myQuizResultArr = [];
+let myQuizResult = [];
 
 // 학습도우미 설정
 let currentHelpPage = 1;
 let currentPopSubPage = 1;
 const helpInfo = [
-  { id: 1, type: "teacher", title: "강사 소개", totalPage: 3 },
-  { id: 2, type: "learningMap", title: "러닝맵", totalPage: 2 },
-  { id: 3, type: "pageView", title: "화면 안내", totalPage: 1 },
-  { id: 4, type: "keyControll", title: "키보드 제어", totalPage: 1 },
+  { id: 1, type: "learningMap", title: "러닝맵", totalPage: 2 },
+  { id: 2, type: "pageView", title: "화면 안내", totalPage: 1 },
+  { id: 3, type: "keyControll", title: "키보드 제어", totalPage: 1 },
 ];

@@ -1,12 +1,11 @@
 // 과정 정보
-const groupCode = 100001;
 const courseTitle = "Frontend Developer KIM KYU REE";
 const introSkipTime = 15;
 
 // 기능 사용 설정
 const useVideoContentsTitle = true; // 비디오 페이지 content Title 노출
 const useScript = true;
-const useQuizIntro = true;
+const useQuizIntro = false;
 const useLessonGroup = false; // 러닝맵 차시를 모듈로 그룹화
 
 // 차시 정보 - lessonGroup : 차시 모듈화, lessonList : 차시
@@ -111,7 +110,7 @@ const pageInfo = [
   },
   {
     id: 3,
-    type: "page",
+    type: "quizPage",
     subType: "quiz",
     title: "평가",
     subTitle: "이번시간에 배운 내용을 바탕으로 퀴즈를 풀어보세요.",

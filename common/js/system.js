@@ -1,8 +1,8 @@
-const device = "p";
-let currentChapter = 1;
-let currentPage = 1;
-const totalPage = 4;
-const videoURL = "";
+const device = checkDevice();
+let currentChapter = getCurrentURL("chapter");
+let currentPage = getCurrentURL("page");
+const totalPage = pageInfo.length;
+const videoURL = makeVideoURL();
 const initVolume = 0.7;
 
 let isVideoPlay = true;
@@ -11,60 +11,118 @@ let isProgressDraggable = true;
 
 $(document).ready(() => {
   setHeader();
-  $(".wrap").append(mainUI());
-  $(".wrap").append(navUI());
-  $(".wrap").append(scriptUI());
-  $(".wrap").append(helpUI());
+  setMain();
+  setNav();
+  setScript();
+  sethelp();
 });
 
 const setHeader = () => {
-  $(".wrap").append(headerUI(courseTitle, lessonList[currentChapter - 1]));
+  $(".wrap").append(headerUI());
 };
 
-const setMain = () => {};
-
-const setVideoPage = () => {};
-
-const setBookMark = () => {
-  bookMarkUI();
+const setMain = () => {
+  $(".wrap").append(mainUI());
+  setVideoPage();
+  setQuizPage();
+  setController();
 };
 
-const setBookMarkList = () => {
-  bookMarkListUI(bookMarkInfo);
+const setVideoPage = () => {
+  $(".main__videoPage").append(videoPageUI());
+  setBookmark();
+  setSkipBtn();
 };
 
-const setIntroSkip = () => {};
+const setBookmark = () => {
+  $(".main__videoPage").append(bookMarkUI());
+  setBookmarkList();
+};
 
-const setQuizPage = () => {};
+const setBookmarkList = () => {
+  $(".bookMark__list").append(bookMarkListUI());
+};
 
-const setQuizIntro = () => {};
+const setSkipBtn = () => {
+  $(".main__videoPage").append(skipBtnUI());
+};
 
-const setQuizPaper = () => {};
+const setQuizPage = () => {
+  $(".main__quizPage").append(quizPageUI());
+  // setQuizIntro();
+  setQuizPaper();
+  // setQuizResult();
+};
 
-const setQuestion = () => {};
+const setQuizIntro = () => {
+  $(".main__quizPage").append(quizIntroUI());
+};
 
-const setAdditional = () => {};
+const setQuizPaper = () => {
+  $(".main__quizPage").append(quizPaperUI());
+  // setQuestion();
+  // setAdditional();
+  // setSelect();
+  // setAnswerSheet();
+  // setAlert();
+};
 
-const setSelect = () => {};
+const setQuestion = () => {
+  $(".quizPage__quiz").append(quizQuestionUI());
+};
 
-const setAnswerSheet = () => {};
+const setAdditional = () => {
+  $(".quizPage__quiz").append(additionalUI());
+};
 
-const setAlert = () => {};
+const setSelect = () => {
+  $(".quizPage__quiz").append(selectUI());
+};
 
-const setQuizResult = () => {};
+const setAnswerSheet = () => {
+  $(".quizPage__quiz").append(answerSheetUI());
+};
 
-const setController = () => {};
+const setAlert = () => {
+  $(".quizPage__quiz").append(alertUI());
+};
 
-const setNav = () => {};
+const setQuizResult = () => {
+  $(".main__quizPage").append(quizResultUI());
+};
 
-const setScript = () => {};
+const setController = () => {
+  $("main").append(controllerUI());
+};
 
-const setHelp = () => {};
+const setNav = () => {
+  $(".wrap").append(navUI());
+};
 
-const setHelpNav = () => {};
+const setScript = () => {
+  $(".wrap").append(scriptUI());
+};
 
-const setLearningMap = () => {};
+const sethelp = () => {
+  $(".wrap").append(helpUI());
+  setHelpNav();
+  setLearningMap();
+  setPageview();
+  setKeyboard();
+};
 
-const setPageView = () => {};
+const setHelpNav = () => {
+  $(".help__helpNav").append(helpNavUI());
+};
 
-const setKeyboard = () => {};
+const setLearningMap = () => {
+  $(".help__contentsWrap").append(learningMapUI());
+};
+
+const setPageview = () => {
+  $(".help__contentsWrap").append(pageviewUI());
+};
+
+const setKeyboard = () => {
+  $(".help__contentsWrap").append(keyboardUI());
+};

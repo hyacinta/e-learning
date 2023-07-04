@@ -64,7 +64,7 @@ input::placeholder {
 }
 
 /* box arrow pointer */
-[class*="arrow--"]::before {
+[class*="arrow--"]::before, [class*="controller__btn"]:hover::before, .playRate__btnOpen:hover::before {
   content: "";
   border-width: 0.4rem;
   border-style: solid;
@@ -173,6 +173,19 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+[class*="controller__btn"]::after, .playRate__btnOpen::after {
+  padding: 0.5em 0.75em 0.35em;
+  font-size: var(--smallText);
+  color: var(--white);
+  border-radius: 0.4rem;
+  background: var(--dimd);
+  backdrop-filter: var(--blur);
+}
+[class*="controller__btn"]:hover::before, .playRate__btnOpen:hover::before {
+  border-top-width: 0.8rem;
+  border-top-color: var(--dimd);
+}
+
 [class*="__total"] {
   color: var(--mainLight);
 }
@@ -264,7 +277,7 @@ body {
   background-position-x: 0.4rem;
 }
 .playRate__btnOpen::after {
-  content: "재생 속도 변경하기";
+  content: "재생 속도 변경";
 }
 .playRate__btnOpen:hover {
   background-image: url("../images/controller/icon__xL--hover.png");
@@ -296,7 +309,7 @@ body {
   background-image: url("../images/controller/icon__info.png");
 }
 .controller__btnInfo::after {
-  content: "학습 도우미 열기";
+  content: "학습도우미 열기";
 }
 .controller__btnInfo:hover {
   background-image: url("../images/controller/icon__info--hover.png");
@@ -314,7 +327,7 @@ body {
   background-image: url("../images/controller/icon__fullscreen.png");
 }
 .controller__btnFullscreen::after {
-  content: "전체화면 보기";
+  content: "전체화면";
 }
 .controller__btnFullscreen:hover {
   background-image: url("../images/controller/icon__fullscreen--hover.png");
@@ -341,7 +354,7 @@ body {
   background-image: url("../images/controller/icon__prevPage.png");
 }
 .controller__btnPrevPage::after {
-  content: "이전 페이지 이동하기";
+  content: "이전 페이지 이동";
 }
 .controller__btnPrevPage:hover {
   background-image: url("../images/controller/icon__prevPage--hover.png");
@@ -350,7 +363,7 @@ body {
   background-image: url("../images/controller/icon__nextPage.png");
 }
 .controller__btnNextPage::after {
-  content: "다음 페이지 이동하기";
+  content: "다음 페이지 이동";
 }
 .controller__btnNextPage:hover {
   background-image: url("../images/controller/icon__nextPage--hover.png");

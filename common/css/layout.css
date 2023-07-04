@@ -79,7 +79,7 @@
 }
 
 /* box arrow pointer */
-[class*="arrow--"]::before {
+[class*="arrow--"]::before, [class*="controller__btn"]:hover::before, .playRate__btnOpen:hover::before {
   position: absolute;
   width: 0;
   height: 0;
@@ -162,10 +162,26 @@
   margin-right: 0.8rem;
 }
 [class*="controller__btn"] {
+  position: relative;
   width: 4rem;
   height: 4rem;
   padding-top: 4rem;
   overflow: hidden;
+}
+[class*="controller__btn"]:hover, .playRate__btnOpen:hover {
+  overflow: visible;
+}
+[class*="controller__btn"]::after, .playRate__btnOpen::after {
+  position: absolute;
+  bottom: 4.2rem;
+  width: auto;
+  margin: auto;
+}
+[class*="controller__btn"]:hover::before, .playRate__btnOpen:hover::before {
+  right: 0;
+  bottom: 3.2rem;
+  left: 0;
+  margin: auto;
 }
 /* progress */
 [class*="__progress"].large {
@@ -215,12 +231,23 @@
 .controller__btnPlay {
   margin-left: 0;
 }
+.controller__btnPlay::after {
+  left: 0;
+}
+.controller__btnReplay::after {
+  left: -1.6rem;
+}
 .controller__playRate {
   position: relative;
 }
 .playRate__btnOpen {
+  position: relative;
   height: 4rem;
   padding: 0.2rem 1rem 0 2.6rem;
+}
+.playRate__btnOpen::after {
+  left: -2rem;
+  width: 10.5rem;
 }
 .playRate__list {
   display: none;
@@ -240,11 +267,33 @@
   margin-bottom: 0.4rem;
   padding: 0 0.4rem 0.1rem 2.2rem;
 }
+.controller__btnVolume::after {
+  left: -1rem;
+}
 .volume__progress {
   width: 4rem;
 }
 .controller__btnIndex {
   margin-left: auto;
+}
+.controller__btnIndex::after {
+  left: -2.3rem;
+  width: 8.6rem;
+}
+.controller__btnInfo::after {
+  left: -3.7rem;
+  width: 11.4rem;
+}
+.controller__btnScript::after {
+  left: -3rem;
+  width: 10.1rem;
+}
+.controller__btnFullscreen::after {
+  left: -1.6rem;
+}
+.controller__btnLock::after {
+  left: -4.3rem;
+  width: 12.7rem;
 }
 .controller__btnPrevPage, .controller__btnNextPage, .controller__pageNation {
   margin-right: 0;
@@ -259,7 +308,15 @@
 .pageNation__total, .controller__btnNextPage {
   order: 1;
 }
-
+.controller__btnPrevPage::after, .controller__btnNextPage::after {
+  width: 11.8rem;
+}
+.controller__btnPrevPage::after {
+  left: -3.9rem;
+}
+.controller__btnNextPage::after {
+  right: 0;
+}
 /* nav */
 .nav {
   display: none;

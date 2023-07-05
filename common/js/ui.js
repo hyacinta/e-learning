@@ -164,10 +164,10 @@ const controllerUI =
   <button type="button" class="controller__btnFullscreen"></button>
   <button type="button" class="controller__btnLock"></button>
   <div class="controller__pageNation flex--center">
-    <button type="button" class="controller__btnPrevPage"></button>
+    <a href="" class="controller__btnPrevPage"></a>
     <p class="pageNation__current">01</p>
     <p class="pageNation__total">04</p>
-    <button type="button" class="controller__btnNextPage"></button>
+    <a href="" class="controller__btnNextPage"></a>
   </div>
 </section>`;
 
@@ -181,7 +181,7 @@ const navUI = () => `<nav class="nav position--right flex--center">
       ${group
         .map(
           (item) =>
-            `<li class="nav__subItem"><a href="" class="nav__subLink flex--start" data-navmovetarget="${item}">${
+            `<li class="nav__subItem"><a href="" class="nav__subLink flex--start" data-nav__target="${item}">${
               pageInfo[item - 1].title
             }</a></li>`
         )
@@ -202,7 +202,7 @@ const scriptUI = (script) => `<section class="script position--bottom">
   <button type="button" class="script__btnClosed--24">닫기</button>
 </section>`;
 
-const helpUI = () => `<section class="help open position--center">
+const helpUI = () => `<section class="help position--center">
   <h3 class="a11yHidden">학습도우미</h3>
   <nav class="help__helpNav">
   </nav>
@@ -249,4 +249,12 @@ const pageviewUI = () => `<div class="pageview__imgWrap">
   <span class="pageview__targetImg6 arrow--top"></span>
 </div>`;
 
-const keyboardUI = () => `<div class="keyboard__imgWrap"></div>`;
+const keyControlUI = () => `<div class="keyControl__imgWrap">
+  space bar key : 일시정지 / 재생 toggle<br>
+  page up key : 이전 페이지<br>
+  page down key : 다음 페이지<br>
+  위쪽 방향 key : 음량 높이기<br>
+  아래쪽 방향 key : 음량 줄이기<br>
+  왼쪽 방향 key : 영상 10초 전으로 이동<br>
+  오른쪽 방향 key : 영상 10초 후로 이동
+</div>`;

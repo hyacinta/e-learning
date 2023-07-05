@@ -28,3 +28,21 @@ const makeVideoURL = (device, groupCode) =>
   `/common/mp4/${device === "m" ? "m/" : ""}${itostr(currentChapter)}/${itostr(
     currentPage
   )}.mp4`;
+
+// 페이지 이동
+const movePage = (thisBtn) => {
+  if (
+    (currentPage === 1 && thisBtn === "controller__btnPrevPage") ||
+    (currentPage === totalPage && thisBtn === "controller__btnNextPage")
+  ) {
+    alert(currentPage === 1 ? "첫 페이지 입니다." : "마지막 페이지 입니다.");
+    return;
+  }
+  currentPage =
+    thisBtn === "controller__btnPrevPage"
+      ? currentPage - 1
+      : thisBtn === "controller__btnNextPage"
+      ? currentPage + 1
+      : thisBtn;
+  window.open(itostr(currentPage) + ".html", "_self");
+};

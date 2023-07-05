@@ -1,8 +1,5 @@
-const headerUI = (
-  course,
-  { id, title }
-) => `<header class="header flex--between">
-  <h1 class="header__logo">${course}</h1>
+const headerUI = ({ id, title }) => `<header class="header flex--between">
+  <h1 class="header__logo">${courseTitle}</h1>
   <h2 class="header__lesson"><span class="lesson__number">${id}</span><span class="lesson__title">${title}</span></h2>
 </header>`;
 
@@ -115,11 +112,9 @@ const alertUI = () => `<div class="quiz__alert position--center flex--center">
   <p class="alert__textBox flex--center"><span>다시 한 번 풀어보세요.</span></p>
 </div>`;
 
-const quizResultUI = (
-  result
-) => `<section class="quizPage__result flex--center">
+const quizResultUI = () => `<section class="quizPage__result flex--center">
   <h4 class="result__title">결과보기</h4>
-  <ul class="result__list flex--center">${result
+  <ul class="result__list flex--center">${myQuizResult
     .map(
       (item) =>
         `<li class="result__item1 ${item}">${
@@ -130,20 +125,29 @@ const quizResultUI = (
   <button type="button" class="result__btnRetry">다시풀기</button>
 </section>`;
 
-const controllerUI =
-  () => `<section class="controller flex--between position--bottom">
+const controllerUI = ({
+  type,
+}) => `<section class="controller flex--between position--bottom">
   <h4 class="a11yHidden">컨트롤러</h4>
-  <div class="controller__videoTime flex--center">
+  <div class="controller__videoTime flex--center ${
+    type !== "videoPage" ? "disabled" : ""
+  }">
     <p class="videoTime__current">00:00</p>
     <div class="videoTime__progress small">
       <div class="progress__bar"></div>
     </div>
     <p class="videoTime__total">00:00</p>
   </div>
-  <button type="button" class="controller__btnPlay"></button>
-  <button type="button" class="controller__btnReplay"></button>
+  <button type="button" class="controller__btnPlay" ${
+    type !== "videoPage" ? "disabled" : ""
+  }></button>
+  <button type="button" class="controller__btnReplay" ${
+    type !== "videoPage" ? "disabled" : ""
+  }></button>
   <div class="controller__playRate">
-    <button type="button" class="playRate__btnOpen">1.0</button>
+    <button type="button" class="playRate__btnOpen" ${
+      type !== "videoPage" ? "disabled" : ""
+    }>1.0</button>
     <ul class="playRate__list">
       <li class="playRate__item flex--center"><button type="button" class="playRate__btnChangeRate" data-targetrate="1.0">1.0</button></li>
       <li class="playRate__item flex--center"><button type="button" class="playRate__btnChangeRate" data-targetrate="1.2">1.2</button></li>
@@ -153,8 +157,12 @@ const controllerUI =
     </ul>
   </div>
   <div class="controller__volume flex--center">
-    <button type="button" class="controller__btnVolume"></button>
-    <div class="volume__progress large">
+    <button type="button" class="controller__btnVolume" ${
+      type !== "videoPage" ? "disabled" : ""
+    }></button>
+    <div class="volume__progress large  ${
+      type !== "videoPage" ? "disabled" : ""
+    }">
       <div class="progress__bar"></div>
     </div>
   </div>
@@ -165,8 +173,8 @@ const controllerUI =
   <button type="button" class="controller__btnLock"></button>
   <div class="controller__pageNation flex--center">
     <a href="" class="controller__btnPrevPage"></a>
-    <p class="pageNation__current">01</p>
-    <p class="pageNation__total">04</p>
+    <p class="pageNation__current">${itostr(currentPage)}</p>
+    <p class="pageNation__total">${itostr(totalPage)}</p>
     <a href="" class="controller__btnNextPage"></a>
   </div>
 </section>`;

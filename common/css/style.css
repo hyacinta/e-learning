@@ -18,6 +18,9 @@ input::placeholder {
   padding: 0;
   white-space: nowrap;
 }
+.disabled, :disabled {
+  opacity: 0.3;
+}
 
 /* circle mark, cross mark, closed btn */
 .circleMark::before, .crossMark::before, .crossMark::after,
@@ -169,7 +172,7 @@ body {
   box-shadow: var(--shadowPress);
 }
 /* controller */
-[class*="controller__btn"] {
+[class*="controller__btn"], [class*="playRate__btn"] {
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -185,7 +188,12 @@ body {
   border-top-width: 0.8rem;
   border-top-color: var(--dimd);
 }
-
+[class*="controller__btn"]:disabled, .playRate__btnOpen:disabled {
+  overflow: hidden;
+}
+[class*="controller__btn"]:disabled::before, .playRate__btnOpen:disabled::before {
+  display: none;
+}
 [class*="__total"] {
   color: var(--mainLight);
 }
@@ -220,17 +228,14 @@ body {
   font-family: var(--regularFont);
   font-size: var(--caption);
 }
-.controller__btnPlay {
-  background-image: url("../images/controller/icon__play.png");
-}
 .controller__btnPlay::after {
   content: "일시정지";
 }
 .controller__btnPlay:hover {
   background-image: url("../images/controller/icon__play--hover.png");
 }
-.controller__btnPlay.pause {
-  background-image: url("../images/controller/icon__pause.png");
+.controller__btnPlay, .controller__btnPlay:disabled {
+  background-image: url("../images/controller/icon__play.png");
 }
 .controller__btnPlay.pause::after {
   content: "재생하기";
@@ -238,8 +243,8 @@ body {
 .controller__btnPlay.pause:hover {
   background-image: url("../images/controller/icon__pause--hover.png");
 }
-.controller__btnReplay {
-  background-image: url("../images/controller/icon__replay.png");
+.controller__btnPlay.pause, .controller__btnPlay.pause:disabled {
+  background-image: url("../images/controller/icon__pause.png");
 }
 .controller__btnReplay::after {
   content: "다시보기";
@@ -247,34 +252,14 @@ body {
 .controller__btnReplay:hover {
   background-image: url("../images/controller/icon__replay--hover.png");
 }
-.controller__btnVolume {
-  background-image: url("../images/controller/icon__volume.png");
-}
-.controller__btnVolume::after {
-  content: "음소거";
-}
-.controller__btnVolume:hover {
-  background-image: url("../images/controller/icon__volume--hover.png");
-}
-.controller__btnVolume.mute {
-  background-image: url("../images/controller/icon__mute.png");
-}
-.controller__btnVolume.mute::after {
-  content: "음소거 해제";
-}
-.controller__btnVolume.mute:hover {
-  background-image: url("../images/controller/icon__mute--hover.png");
-}
-[class*="playRate__btn"] {
-  background-repeat: no-repeat;
-  background-position-y: center;
+.controller__btnReplay, .controller__btnReplay:disabled {
+  background-image: url("../images/controller/icon__replay.png");
 }
 [class*="playRate__btn"]:hover {
   color: var(--mainLight);
 }
-.playRate__btnOpen {
-  background-image: url("../images/controller/icon__xL.png");
-  background-position-x: 0.4rem;
+[class*="playRate__btn"]:disabled {
+  color: inherit;
 }
 .playRate__btnOpen::after {
   content: "재생 속도 변경";
@@ -282,19 +267,41 @@ body {
 .playRate__btnOpen:hover {
   background-image: url("../images/controller/icon__xL--hover.png");
 }
-.playRate__btnChangeRate {
+.playRate__btnOpen, .playRate__btnOpen:disabled {
+  background-image: url("../images/controller/icon__xL.png");
+  background-position-x: 0.4rem;
+}
+.playRate__btnChangeRate:hover {
+  background-image: url("../images/controller/icon__x--hover.png");
+}
+.playRate__btnChangeRate, .playRate__btnChangeRate:disabled {
   font-family: var(--regularFont);
   font-size: var(--body);
   font-weight: --fontBold;
   background-image: url("../images/controller/icon__x.png");
 }
-.playRate__btnChangeRate:hover {
-  background-image: url("../images/controller/icon__x--hover.png");
-}
 .playRate__list {
   background-color: var(--dimd);
   backdrop-filter: var(--blur);
   border-radius: 0.8rem;
+}
+.controller__btnVolume::after {
+  content: "음소거";
+}
+.controller__btnVolume:hover {
+  background-image: url("../images/controller/icon__volume--hover.png");
+}
+.controller__btnVolume, .controller__btnVolume:disabled {
+  background-image: url("../images/controller/icon__volume.png");
+}
+.controller__btnVolume.mute::after {
+  content: "음소거 해제";
+}
+.controller__btnVolume.mute:hover {
+  background-image: url("../images/controller/icon__mute--hover.png");
+}
+.controller__btnVolume.mute, .controller__btnVolume.mute:disabled {
+  background-image: url("../images/controller/icon__mute.png");
 }
 .controller__btnIndex {
   background-image: url("../images/controller/icon__index.png");

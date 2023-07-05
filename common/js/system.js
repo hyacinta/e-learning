@@ -19,7 +19,7 @@ $(document).ready(() => {
 });
 
 const setHeader = () => {
-  $(".wrap").append(headerUI(courseTitle, lessonList[currentChapter - 1]));
+  $(".wrap").append(headerUI(lessonList[currentChapter - 1]));
 };
 
 const setMain = ({ type, subType }) => {
@@ -41,11 +41,16 @@ const setMain = ({ type, subType }) => {
 
 const setVideoPage = (type) => {
   $(".main__videoPage").append(videoPageUI());
-  if (type === "video-i") {
-    setSkipBtn();
-    return;
+  switch (type) {
+    case "video-i":
+      setSkipBtn();
+      break;
+    case "video":
+      setBookmark();
+      break;
+    default:
+      break;
   }
-  setBookmark();
 
   // 동작
 };
@@ -111,7 +116,7 @@ const setAlert = () => {
 };
 
 const setQuizResult = () => {
-  $(".main__quizPage").append(quizResultUI(myQuizResult));
+  $(".main__quizPage").append(quizResultUI());
 
   // 동작
 };
@@ -176,7 +181,7 @@ const setKeyControl = () => {
 };
 
 const setController = () => {
-  $("main").append(controllerUI());
+  $("main").append(controllerUI(pageInfo[currentPage - 1]));
 
   // 동작
   $(".controller__btnIndex").on("click", function () {

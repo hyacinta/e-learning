@@ -32,19 +32,19 @@ const quizPageUI = () =>
 
 const quizIntroUI = () => `<section class="quizPage__intro flex--center">
   <h4 class="intro__title">QUIZ</h4>
-  <p class="intro__exp">${quizIntroText}</p>
+  <p class="intro__exp">지금까지 학습한 내용을 퀴즈를 통해 확인해 보겠습니다.<br>총 <em>${quizInfo.length}개</em>의 문제가 주어지며 기회는 <em>${quizChanceInit}번</em>입니다.</p>
   <button type="button" class="intro__btnStart">START</button>
 </section>`;
 
 const quizPaperUI = () =>
-  `<section class="quizPage__quiz flex--start"></section>`;
+  `<section class="quizPage__paper flex--center"></section>`;
 
 const quizQuestionUI = ({
   id,
   type,
   oxQuestion,
   question,
-}) => `<div class="quiz__question flex--start">
+}) => `<div class="paper__question flex--start">
   <div class="question__number">${id}</div>
   <div class="question__titleWrap">
     ${type === "ox" ? `<p class="question__oxExp">${oxQuestion}</p>` : ``}
@@ -54,21 +54,21 @@ const quizQuestionUI = ({
 
 const additionalUI = (type, additional) => {
   if (type === "list") {
-    return `<ul class="quiz__additional code flex--center">
+    return `<ul class="paper__additional code flex--center">
     ${additional
       .map((item) => `<li class="additional__item">${item}</li>`)
       .join("")}
   </ul>`;
   }
   if (type === "code") {
-    return `<code class="quiz__additional code flex--center">${additional}</code>`;
+    return `<code class="paper__additional code flex--center">${additional}</code>`;
   }
-  return `<p class="quiz__additional flex--center">${additional}</p>`;
+  return `<p class="paper__additional flex--center">${additional}</p>`;
 };
 
 const selectUI = ({ type, distractor }) => {
   if (type === "sa") {
-    return `<ul class="quiz__select sa">${distractor
+    return `<ul class="paper__select sa">${distractor
       .map(
         (item, idx) =>
           `<li class="select__item flex--start"><button type="button" class="select__btnSelect flex--start" data-select="${
@@ -78,25 +78,29 @@ const selectUI = ({ type, distractor }) => {
       .join("")}</ul>`;
   }
   if (type === "ox") {
-    return `<ul class="quiz__select ox flex--center">
+    return `<ul class="paper__select ox flex--center">
     <li class="select__item"><button type="button" class="select__btnSelect O" data-select="O">맞다</button></li>
     <li class="select__item"><button type="button" class="select__btnSelect X" data-select="X">틀리다</button></li>
     </ul>`;
   }
   if (type === "ju") {
-    return `<div class="quiz__select ju flex--center">
+    return `<div class="paper__select ju flex--center">
     <input type="text" class="select__input" placeholder="정답을 입력하세요.">
-    <button type="button" class="select__btnAnswerCheck">정답확인</button>
   </div>`;
   }
 };
+
+const quizSolveBtnUI =
+  () => `<button type="button" class="select__btnAnswerCheck">
+정답확인
+</button>`;
 
 const answerSheetUI = ({
   id,
   type,
   answer,
   explanation,
-}) => `<div class="quiz__answerSheet position--bottom">
+}) => `<div class="paper__answerSheet position--bottom">
   <div class="answerSheet__inner">
     <p class="answerSheet__correctAnswer flex--start">${
       type === "ox" ? `<span>${answer}</span>` : `${answer}`
@@ -108,7 +112,7 @@ const answerSheetUI = ({
   }</button>
 </div>`;
 
-const alertUI = () => `<div class="quiz__alert position--center flex--center">
+const alertUI = () => `<div class="paper__alert position--center flex--center">
   <p class="alert__textBox flex--center"><span>다시 한 번 풀어보세요.</span></p>
 </div>`;
 

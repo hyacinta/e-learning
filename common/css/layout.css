@@ -588,7 +588,7 @@ code {
   height: 100%;
   padding-bottom: 8rem;
 }
-[class*="quizPage__"]:not(.quizPage__quiz) {
+[class*="quizPage__"]:not(.quizPage__paper) {
   flex-direction: column;
 }
 .unLock [class*="quizPage__"] {
@@ -603,13 +603,13 @@ code {
   margin-bottom: 4rem;
 }
 /* quiz */
-.quizPage__quiz {
+.quizPage__paper {
   align-content: flex-start;
 }
-[class^="quiz__"] {
+[class^="paper__"] {
   width: 100%;
 }
-.quiz__question {
+.paper__question {
   align-items: flex-end;
   height: 10.4rem;
   margin: 4.8rem 4rem 4rem 6.4rem;
@@ -625,7 +625,7 @@ code {
 .question__titleWrap {
   padding-bottom: 0.4rem;
 }
-.quiz__additional {
+.paper__additional {
   margin: -2.4rem 4rem 4rem 6.4rem;
   padding: 0.7em 1em 0.6em;
 }
@@ -633,8 +633,8 @@ code {
   margin: 0 1.2rem;
 }
 /* 퀴즈 정답 선택지 */
-.quiz__select {
-  margin: 0 4rem 0 6.4rem;
+.paper__select {
+  margin: 0 4rem 4rem 6.4rem;
 }
 .select__item {
   position: relative;
@@ -648,7 +648,7 @@ code {
 .sa .select__item.correctAnswer::before {
   padding-right: 4.2rem;
 }
-.quiz__select.sa {
+.paper__select.sa {
   padding-left: 4rem;
 }
 .sa .select__btnSelect::before {
@@ -678,19 +678,23 @@ code {
   height: 0.4rem;
 }
 /* 주관식 */
-.quiz__select.ju {
+.paper__select.ju {
   flex-wrap: wrap;
   flex-direction: column;
 }
 .select__input {
-  margin: 0 auto 2.4rem;
+  margin: 6.4rem auto 0;
   padding: 0.5em 0.75em;
 }
 /* 해설지 */
-.quiz__answerSheet {
+.paper__answerSheet {
+  bottom: -40rem;
   width: 100%;
   padding: 2.4rem;
   z-index: 10;
+}
+.paper__answerSheet.active {
+  bottom: 0;
 }
 .answerSheet__inner {
   width: 100%;
@@ -701,13 +705,16 @@ code {
   margin-bottom: 0.8rem;
 }
 .answerSheet__exp {
-  align-items: flex-start;
+  align-items: center;
 }
 .answerSheet__correctAnswer::before, .answerSheet__exp::before {
   display: flex;
   align-items: center;
   margin-right: 1.2rem;
   padding: 0.3rem 0.5em;
+}
+.answerSheet__exp::before {
+  margin-bottom: auto;
 }
 .answerSheet__correctAnswer span {
   position: relative;
@@ -730,7 +737,7 @@ code {
   padding: 0.4em 1em;
 }
 /* alert message */
-.quiz__alert {
+.paper__alert {
   top: 0;
   width: 100%;
   height: 100%;

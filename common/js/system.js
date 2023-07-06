@@ -35,8 +35,6 @@ const setMain = ({ type, subType }) => {
       break;
   }
   setController();
-
-  // 동작
 };
 
 const setVideoPage = (type) => {
@@ -51,8 +49,6 @@ const setVideoPage = (type) => {
     default:
       break;
   }
-
-  // 동작
 };
 
 const setBookmark = () => {
@@ -76,41 +72,74 @@ const setSkipBtn = () => {
 
 const setQuizPage = () => {
   $(".main__quizPage").append(quizPageUI());
-  // setQuizIntro();
-  // setQuizPaper(quizInfo[currentQuizNum - 1]);
-  setQuizResult();
-
-  // 동작
+  if (useQuizIntro) {
+    setQuizIntro();
+    return;
+  }
+  setQuizPaper(quizInfo[currentQuizNum - 1]);
 };
 
 const setQuizIntro = () => {
   $(".main__quizPage").append(quizIntroUI());
 
   // 동작
+  $(".intro__btnStart").on("click", function () {
+    $(".quizPage__intro").remove();
+    setQuizPaper(quizInfo[currentQuizNum - 1]);
+  });
 };
 
 const setQuizPaper = (currentQuiz) => {
   const { additionalType, additional } = currentQuiz;
   $(".main__quizPage").append(quizPaperUI());
-  $(".quizPage__quiz").append(quizQuestionUI(currentQuiz));
+  $(".quizPage__paper").append(quizQuestionUI(currentQuiz));
   if (additionalType !== null) {
-    $(".quizPage__quiz").append(additionalUI(additionalType, additional));
+    $(".quizPage__paper").append(additionalUI(additionalType, additional));
   }
-  $(".quizPage__quiz").append(selectUI(currentQuiz));
+  $(".quizPage__paper").append(selectUI(currentQuiz));
   setAnswerSheet(currentQuiz);
-  setAlert();
 
   // 동작
+  $(".select__btnSelect").on("click", function (e) {
+    $(this).parent().toggleClass("myAnswer");
+
+    if ($(this).parent().hasClass("myAnswer")) {
+      myQuizAnswer.push($(this).attr("data-select"));
+    }
+    if (!$(this).parent().hasClass("myAnswer")) {
+      myQuizAnswer = myQuizAnswer.filter(
+        (item) => item !== $(this).attr("data-select")
+      );
+    }
+    if (!$(".select__btnAnswerCheck").length && $(".myAnswer").length) {
+      setQuizSolveBtn(currentQuiz);
+    }
+    if ($(".select__btnAnswerCheck").length && !$(".myAnswer").length) {
+      $(".select__btnAnswerCheck").remove();
+    }
+  });
 };
 
+const setQuizSolveBtn = ({ answer }) => {
+  console.log(answer);
+  $(".paper__select").after(quizSolveBtnUI());
+
+  $(".select__btnAnswerCheck").on("click", function () {
+    console.log(myQuizAnswer.length === answer.length);
+    // myQuizAnswer.every((item) => answer.includes(item));
+    console.log(answer.every((item) => myQuizAnswer.includes(item)));
+    // setAlert();
+  });
+};
 const setAnswerSheet = (currentQuiz) => {
-  $(".quizPage__quiz").append(answerSheetUI(currentQuiz));
+  $(".quizPage__paper").append(answerSheetUI(currentQuiz));
 
   // 동작
+  // setQuizResult();
 };
 
 const setAlert = () => {
-  $(".quizPage__quiz").append(alertUI());
+  $(".quizPage__paper").append(alertUI());
 
   // 동작
 };

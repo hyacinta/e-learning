@@ -46,3 +46,5 @@ const movePage = (thisBtn) => {
       : thisBtn;
   window.open(itostr(currentPage) + ".html", "_self");
 };
+
+const solveQuiz = () => {};

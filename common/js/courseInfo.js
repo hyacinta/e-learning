@@ -6,53 +6,8 @@ const introSkipTime = 15;
 const useVideoContentsTitle = true; // 비디오 페이지 content Title 노출
 const useScript = true;
 const useQuizIntro = false;
-const useLessonGroup = false; // 러닝맵 차시를 모듈로 그룹화
 
-// 차시 정보 - lessonGroup : 차시 모듈화, lessonList : 차시
-const lessonGroup = [
-  {
-    groupTitle: "모듈명1",
-    groupSubTitle: "서브타이틀1",
-    group: [1, 2, 3],
-    page: 1,
-  },
-  {
-    groupId: 2,
-    groupTitle: "모듈명2",
-    groupSubTitle: "서브타이틀2",
-    group: [4, 5, 6, 7, 8, 9],
-    page: 1,
-  },
-  {
-    groupId: 3,
-    groupTitle: "모듈명3",
-    groupSubTitle: "서브타이틀3",
-    group: [10, 11, 12, 13, 14],
-    page: 1,
-  },
-  {
-    groupId: 4,
-    groupTitle: "모듈명1",
-    groupSubTitle: "서브타이틀1",
-    group: [15, 16, 17, 18],
-    page: 2,
-  },
-  {
-    groupId: 5,
-    groupTitle: "모듈명2",
-    groupSubTitle: "서브타이틀2",
-    group: [19, 20, 21, 22, 23],
-    page: 2,
-  },
-  {
-    groupId: 6,
-    groupTitle: "모듈명3",
-    groupSubTitle: "서브타이틀3",
-    group: [24, 25, 26, 27, 28, 29, 30],
-    page: 2,
-  },
-];
-
+// 차시정보
 const lessonList = [
   { id: 1, title: "차시명입니다." },
   { id: 2, title: "차시명입니다." },
@@ -128,12 +83,11 @@ const pageInfo = [
 // subTitle은 컨텐츠 타이틀의 설명입니다.
 
 // 퀴즈 정보 및 설정
-const quizIntroText =
-  "지금까지 학습한 내용을 퀴즈를 통해 확인해 보겠습니다.<br>총 <em>2개</em>의 문제가 주어지며 기회는 <em>2번</em>입니다.";
 const quizChanceInit = 2;
 let quizChance = quizChanceInit;
 let currentQuizNum = 1;
 let myQuizResult = [];
+let myQuizAnswer = [];
 
 // 학습도우미 설정
 let currentHelpPage = 1;

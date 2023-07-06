@@ -15,43 +15,12 @@ const bookMarkInfo = [
 // question - "텍스트로 입력할 것" <em></em> - 부정문을 강조할 경우 사용
 // oxQuestion - ox 퀴즈일 경우 추가 지시문을 "텍스트로 입력할 것" or 사지선다형일 경우 ""
 // question - 문제를 "텍스트로 입력할 것"
-// additionalType - 문제에 보기가 타입을 작성 (list, string, code), 필요 없을 경우 null;
-// additional - 문제에 보기가 필요할 경우 - 배열안에 "텍스트로 입력" or "텍스트 입력"
+// additionalType - 문제에 보기가 필요한 경우 타입을 작성 (list, string, code), 필요 없을 경우 null;
+// additional - 리스트형은 배열안에 "텍스트로 입력" or "텍스트 입력"
 // distractor - 사지 선다형 선택 리스트를 배열 안에 "텍스트로 입력할 것" or 필요 없을 경우 빈 배열
-// answer - 정답 입력, OX퀴즈: "O" or "X", 사지선다: "1" or "2" or "3" or "4", 주관식: ["텍스트 입력"]
+// answer - 정답 입력, OX퀴즈: 배열안에 텍스트로 입력할 것! "O" or "X", 사지선다: "1" or "2" or "3" or "4", 주관식: ["텍스트 입력"]
 // explanation - 정답에 대한 해설 "텍스트로 입력"
 const quizInfo = [
-  {
-    id: 1,
-    type: "ju",
-    oxQuestion: "",
-    question:
-      "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은?",
-    additionalType: "list",
-    additional: [1, 2, 3, 4],
-    distractor: [
-      "ㄱ, ㄴ, ㄷ, ㄹ",
-      "ㄱ, ㄴ, ㄷ, ㄹ",
-      "ㄱ, ㄴ, ㄷ, ㄹ",
-      "ㄱ, ㄴ, ㄷ, ㄹ",
-    ],
-    answer: ["정답", "정답12"],
-    explanation:
-      "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위해 'Dock(덕) ⟶ 홈 화면 첫 페이지 활용 ⟶ 위젯 활용' 순서로 정리합니다.",
-  },
-  {
-    id: 2,
-    type: "ox",
-    oxQuestion: "아래의 설명이 맞으면 O, 틀리면 X를 선택하세요.",
-    question:
-      "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은?",
-    additionalType: "code",
-    additional: [],
-    distractor: [],
-    answer: "X",
-    explanation:
-      "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위해 'Dock(덕) ⟶ 홈 화면 첫 페이지 활용 ⟶ 위젯 활용' 순서로 정리합니다.",
-  },
   {
     id: 3,
     type: "sa",
@@ -66,9 +35,40 @@ const quizInfo = [
       "ㄱ, ㄴ, ㄷ, ㄹ",
       "ㄱ, ㄴ, ㄷ, ㄹ",
     ],
-    answer: "4",
+    answer: ["4", "3"],
     explanation:
       "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위해 'Dock(덕) ⟶ 홈 화면 첫 페이지 활용 ⟶ 위젯 활용' 순서로 정리합니다.",
+  },
+  {
+    id: 2,
+    type: "ox",
+    oxQuestion: "아래의 설명이 맞으면 O, 틀리면 X를 선택하세요.",
+    question:
+      "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은?",
+    additionalType: "code",
+    additional: [],
+    distractor: [],
+    answer: ["X"],
+    explanation:
+      "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위해 'Dock(덕) ⟶ 홈 화면 첫 페이지 활용 ⟶ 위젯 활용' 순서로 정리합니다.",
+  },
+  {
+    id: 1,
+    type: "ju",
+    oxQuestion: "",
+    question:
+      "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은?",
+    additionalType: null,
+    additional: "",
+    distractor: [
+      "ㄱ, ㄴ, ㄷ, ㄹ",
+      "ㄱ, ㄴ, ㄷ, ㄹ",
+      "ㄱ, ㄴ, ㄷ, ㄹ",
+      "ㄱ, ㄴ, ㄷ, ㄹ",
+    ],
+    answer: ["정답", "정답12"],
+    explanation:
+      "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위해 'Dock(덕) ⟶ 홈 화면 첫 페이지 활용 ⟶ 위젯 활용' 순서로 정리합니다. 앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위해 'Dock(덕) ⟶ 홈 화면 첫 페이지 활용 ⟶ 위젯 활용' 순서로 정리합니다. 앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위해 'Dock(덕) ⟶ 홈 화면 첫 페이지 활용 ⟶ 위젯 활용' 순서로 정리합니다.",
   },
 ];
 

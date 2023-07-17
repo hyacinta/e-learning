@@ -83,7 +83,7 @@ const pageInfo = [
 // subTitle은 컨텐츠 타이틀의 설명입니다.
 
 // 퀴즈 정보 및 설정
-const quizChanceInit = 2;
+const quizChanceInit = 3;
 let quizChance = quizChanceInit;
 let currentQuizNum = 1;
 let myQuizResult = [];

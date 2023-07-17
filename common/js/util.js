@@ -47,4 +47,38 @@ const movePage = (thisBtn) => {
   window.open(itostr(currentPage) + ".html", "_self");
 };
 
-const solveQuiz = () => {};
+const checkAnswer = (answer) =>
+  myQuizAnswer.length === answer.length &&
+  answer.every((item) => myQuizAnswer.includes(item))
+    ? true
+    : false;
+
+const solveQuiz = (type, answer) => {
+  if (quizChance <= 0) return;
+  quizChance = type === "ox" ? 0 : quizChance - 1;
+  const currentQuizResult = checkAnswer(answer) ? "correct" : "wrong";
+
+  if (checkAnswer(answer) || !quizChance) {
+    myQuizResult.push(currentQuizResult);
+    if (type === "sa") {
+      answer.forEach((item) => {
+        $(".paper__select")
+          .children(":eq(" + (Number(item) - 1) + ")")
+          .addClass("correctAnswer");
+      });
+    }
+    if (type === "ju") {
+      $(this).attr("disabled", true);
+    }
+    $(".paper__answerSheet").addClass("active");
+    myQuizAnswer = [];
+    return;
+  }
+  $(".paper__alert").addClass("active");
+  $(".select__item").removeClass("myAnswer");
+  $(".select__btnAnswerCheck").remove();
+  if (type === "ju") {
+    $(".select__input").val("");
+  }
+  myQuizAnswer = [];
+};

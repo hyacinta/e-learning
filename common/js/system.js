@@ -71,7 +71,7 @@ const setSkipBtn = () => {
 };
 
 const setQuizPage = () => {
-  $(".main__quizPage").append(quizPageUI());
+  $(".main__quizPage").html(quizPageUI());
   if (useQuizIntro) {
     setQuizIntro();
     return;
@@ -98,9 +98,11 @@ const setQuizPaper = (currentQuiz) => {
   }
   $(".quizPage__paper").append(selectUI(currentQuiz));
   setAnswerSheet(currentQuiz);
+  setAlert();
 
   // 동작
   $(".select__btnSelect").on("click", function (e) {
+    $(".paper__alert").removeClass("active");
     $(this).parent().toggleClass("myAnswer");
 
     if ($(this).parent().hasClass("myAnswer")) {
@@ -118,24 +120,38 @@ const setQuizPaper = (currentQuiz) => {
       $(".select__btnAnswerCheck").remove();
     }
   });
+  $(".select__input").focus(function () {
+    if (!$(".select__btnAnswerCheck").length) {
+      setQuizSolveBtn(currentQuiz);
+    }
+  });
 };
 
-const setQuizSolveBtn = ({ answer }) => {
-  console.log(answer);
+const setQuizSolveBtn = ({ type, answer, explanation }) => {
   $(".paper__select").after(quizSolveBtnUI());
-
   $(".select__btnAnswerCheck").on("click", function () {
-    console.log(myQuizAnswer.length === answer.length);
-    // myQuizAnswer.every((item) => answer.includes(item));
-    console.log(answer.every((item) => myQuizAnswer.includes(item)));
-    // setAlert();
+    if (type === "ju") {
+      myQuizAnswer.push($(".select__input").val());
+    }
+    solveQuiz(type, answer, explanation);
   });
 };
 const setAnswerSheet = (currentQuiz) => {
   $(".quizPage__paper").append(answerSheetUI(currentQuiz));
+  if (!(currentQuiz.id === quizInfo.length)) {
+    $(".answerSheet__btnNextStep").html("다음문제");
+  }
 
   // 동작
-  // setQuizResult();
+  $(".answerSheet__btnNextStep").on("click", function () {
+    if (currentQuiz.id === quizInfo.length) {
+      setQuizResult();
+      return;
+    }
+    currentQuizNum += 1;
+    quizChance = quizChanceInit;
+    setQuizPage();
+  });
 };
 
 const setAlert = () => {
@@ -148,6 +164,14 @@ const setQuizResult = () => {
   $(".main__quizPage").append(quizResultUI());
 
   // 동작
+  $(".quizPage__result").on("click", function () {
+    $(".quizPage__result").remove();
+    quizChance = quizChanceInit;
+    currentQuizNum = 1;
+    myQuizAnswer = [];
+    myQuizResult = [];
+    setQuizPage();
+  });
 };
 
 const setNav = () => {

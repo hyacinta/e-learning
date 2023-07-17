@@ -767,6 +767,24 @@ code {
   background-color: var(--dimd);
   backdrop-filter: var(--blur);
 }
+.paper__alert.active {
+  animation: alert 1.5s ease-in-out 1 normal both;
+}
+@keyframes alert {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    z-index: -100;
+  }
+}
 .alert__textBox {
   font-family: var(--squareRoundEB);
   font-size: var(--headline4);

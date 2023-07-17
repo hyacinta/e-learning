@@ -116,7 +116,8 @@ const alertUI = () => `<div class="paper__alert position--center flex--center">
   <p class="alert__textBox flex--center"><span>다시 한 번 풀어보세요.</span></p>
 </div>`;
 
-const quizResultUI = () => `<section class="quizPage__result flex--center">
+const quizResultUI =
+  () => `<section class="quizPage__result flex--center position--center">
   <h4 class="result__title">결과보기</h4>
   <ul class="result__list flex--center">${myQuizResult
     .map(

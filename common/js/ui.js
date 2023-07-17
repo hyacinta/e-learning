@@ -6,7 +6,7 @@ const headerUI = ({ id, title }) => `<header class="header flex--between">
 const mainUI = (type) => `<main class="main__${type} position--center"></main>`;
 
 const videoPageUI = () => `<video class="video" autoplay>
-  <source src="/media/cc0-videos/flower.mp4" type="video/mp4">
+  <source src="${videoURL}" type="video/mp4">
 </video>`;
 
 const bookMarkUI = () => `<div class="video__bookMark">
@@ -219,7 +219,7 @@ const helpUI = () => `<section class="help position--center">
   <h3 class="a11yHidden">학습도우미</h3>
   <nav class="help__helpNav">
   </nav>
-  <div class="help__contentsWrap ${helpInfo[currentHelpPage - 1].type}">
+  <div class="help__contentsWrap">
     <h4 class="a11yHidden">러닝맵</h4>
   </div>
   <button type="button" class="help__btnClosed--40">닫기</button>
@@ -231,7 +231,9 @@ const helpNavUI = () => `<ul class="helpNav__list flex--start">
       ({ id, title }) =>
         `<li class="helpNav__item ${
           id === currentPopSubPage ? "active" : ""
-        }"><button type="button" class="helpNav__btnMovePage" data-helpmovetarget="${id}">${title}</button></li>`
+        }"><button type="button" class="helpNav__btnMovePage" data-helpmovetarget="${id}" ${
+          id === currentHelpPage ? "disabled" : ""
+        }>${title}</button></li>`
     )
     .join("")}
 </ul>`;

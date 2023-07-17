@@ -484,7 +484,7 @@
 }
 .pageview__targetImg1 {
   top: 0.7rem;
-  left: 0.7rem;
+  left: 0.8rem;
   width: 10rem;
   height: 2rem;
 }
@@ -500,7 +500,7 @@
 }
 .pageview__targetImg2 {
   top: 0.6rem;
-  right: 0.2em;
+  right: 0.3rem;
   width: 10rem;
   height: 2.4rem;
 }
@@ -556,7 +556,7 @@
 }
 .pageview__targetImg6 {
   bottom: 6.4rem;
-  left: 4.2rem;
+  left: 4.3rem;
   width: 16.5rem;
   height: 2rem;
 }
@@ -568,9 +568,16 @@
   bottom: 3.2rem;
 }
 /* keyControl */
+.keyControl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .keyControl__imgWrap {
   width: 100%;
   height: 38.5rem;
+  padding-top: 38.5rem;
+  overflow: hidden;
 }
 .help__btnClosed--40 {
   top: 2rem;

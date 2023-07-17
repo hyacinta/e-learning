@@ -15,7 +15,6 @@ $(document).ready(() => {
   setMain(pageInfo[currentPage - 1]);
   setNav();
   setScript();
-  setHelp();
 });
 
 const setHeader = () => {
@@ -39,6 +38,7 @@ const setMain = ({ type, subType }) => {
 
 const setVideoPage = (type) => {
   $(".main__videoPage").append(videoPageUI());
+
   switch (type) {
     case "video-i":
       setSkipBtn();
@@ -199,13 +199,21 @@ const setScript = () => {
 const setHelp = () => {
   $(".wrap").append(helpUI());
   setHelpNav();
-  setLearningMap();
-  setPageview();
-  setKeyControl();
+  switch (currentHelpPage) {
+    case 1:
+      setLearningMap();
+      break;
+    case 2:
+      setPageview();
+      break;
+    case 3:
+      setKeyControl();
+      break;
+  }
 
   // 동작
   $(".help__btnClosed--40").on("click", function () {
-    $(".help").removeClass("open");
+    $(".help").remove("");
   });
 };
 
@@ -213,24 +221,57 @@ const setHelpNav = () => {
   $(".help__helpNav").append(helpNavUI());
 
   // 동작
+  $(".helpNav__btnMovePage").on("click", function () {
+    currentHelpPage = Number($(this).attr("data-helpmovetarget"));
+
+    $(".helpNav__item").removeClass("active");
+    $(".helpNav__btnMovePage").attr("disabled", false);
+
+    $(this).parent().addClass("active");
+    $(this).attr("disabled", true);
+
+    switch (currentHelpPage) {
+      case 1:
+        setLearningMap();
+        break;
+      case 2:
+        setPageview();
+        break;
+      case 3:
+        setKeyControl();
+        break;
+    }
+  });
 };
 
 const setLearningMap = () => {
-  $(".help__contentsWrap").append(learningMapUI());
+  $(".help__contentsWrap").html(learningMapUI());
+  $(".help__contentsWrap").addClass("learningmap");
+  $(".help__contentsWrap").removeClass("pageview");
+  $(".help__contentsWrap").removeClass("keyControl");
 
   // 동작
+  console.log("러닝맵");
 };
 
 const setPageview = () => {
-  $(".help__contentsWrap").append(pageviewUI());
+  $(".help__contentsWrap").html(pageviewUI());
+  $(".help__contentsWrap").addClass("pageview");
+  $(".help__contentsWrap").removeClass("learningmap");
+  $(".help__contentsWrap").removeClass("keyControl");
 
   // 동작
+  console.log("페이지뷰");
 };
 
 const setKeyControl = () => {
-  $(".help__contentsWrap").append(keyControlUI());
+  $(".help__contentsWrap").html(keyControlUI());
+  $(".help__contentsWrap").addClass("keyControl");
+  $(".help__contentsWrap").removeClass("pageview");
+  $(".help__contentsWrap").removeClass("learningmap");
 
   // 동작
+  console.log("키컨트롤");
 };
 
 const setController = () => {
@@ -241,6 +282,7 @@ const setController = () => {
     $(".nav").toggleClass("open");
   });
   $(".controller__btnInfo").on("click", function () {
+    setHelp();
     $(".help").addClass("open");
   });
   $(".controller__btnScript").on("click", function () {

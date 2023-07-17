@@ -25,9 +25,9 @@ const getCurrentURL = (target) => {
 };
 
 const makeVideoURL = (device, groupCode) =>
-  `/common/mp4/${device === "m" ? "m/" : ""}${itostr(currentChapter)}/${itostr(
-    currentPage
-  )}.mp4`;
+  `/common/media/${device === "m" ? "m/" : ""}${itostr(
+    currentChapter
+  )}/${itostr(currentPage)}.mp4`;
 
 // 페이지 이동
 const movePage = (thisBtn) => {

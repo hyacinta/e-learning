@@ -156,8 +156,6 @@ const setAnswerSheet = (currentQuiz) => {
 
 const setAlert = () => {
   $(".quizPage__paper").append(alertUI());
-
-  // 동작
 };
 
 const setQuizResult = () => {
@@ -249,9 +247,6 @@ const setLearningMap = () => {
   $(".help__contentsWrap").addClass("learningmap");
   $(".help__contentsWrap").removeClass("pageview");
   $(".help__contentsWrap").removeClass("keyControl");
-
-  // 동작
-  console.log("러닝맵");
 };
 
 const setPageview = () => {
@@ -259,9 +254,6 @@ const setPageview = () => {
   $(".help__contentsWrap").addClass("pageview");
   $(".help__contentsWrap").removeClass("learningmap");
   $(".help__contentsWrap").removeClass("keyControl");
-
-  // 동작
-  console.log("페이지뷰");
 };
 
 const setKeyControl = () => {
@@ -269,9 +261,6 @@ const setKeyControl = () => {
   $(".help__contentsWrap").addClass("keyControl");
   $(".help__contentsWrap").removeClass("pageview");
   $(".help__contentsWrap").removeClass("learningmap");
-
-  // 동작
-  console.log("키컨트롤");
 };
 
 const setController = () => {

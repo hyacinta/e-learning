@@ -23,22 +23,24 @@ const setHeader = () => {
 
 const setMain = ({ type, subType }) => {
   $(".wrap").append(mainUI(type));
+  let video;
+
   switch (type) {
     case "videoPage":
-      setVideoPage(subType);
+      $(".main__videoPage").append(videoPageUI());
+      video = $(".video");
+      setVideoPage(subType, video);
       break;
     case "quizPage":
+      $(".main__quizPage").html(quizPageUI());
+      video = $(".audio", video);
       setQuizPage();
-    default:
-      setVideoPage();
-      break;
   }
-  setController();
+
+  setController(video);
 };
 
-const setVideoPage = (type) => {
-  $(".main__videoPage").append(videoPageUI());
-
+const setVideoPage = (type, video) => {
   switch (type) {
     case "video-i":
       setSkipBtn();
@@ -49,6 +51,35 @@ const setVideoPage = (type) => {
     default:
       break;
   }
+
+  // 영상 재생 준비중
+  video.on("loadedmetadata", () => {
+    isVideoPlay = !video[0].paused;
+    $(".controller__btnPlay").toggleClass("pause", isVideoPlay);
+    video[0].volume = initVolume;
+    $(".videoTime__total").text(convertSecToMin(video[0].duration));
+    updateProgress($(".volume__progress .progress__bar"), initVolume * 100);
+  });
+
+  // 영상 재생중
+  video.on("timeupdate", () => {
+    isVideoPlay = !video[0].paused;
+    $(".controller__btnPlay").toggleClass("pause", isVideoPlay);
+    const totalPlayTime = video[0].duration;
+    const currentPlayTime = video[0].currentTime;
+    const videoPerc = getPerc(currentPlayTime, totalPlayTime);
+    updateProgress($(".videoTime__progress .progress__bar"), videoPerc);
+    $(".videoTime__current").text(convertSecToMin(currentPlayTime));
+    if ($(".video__btnSkip").length && video[0].currentTime >= introSkipTime) {
+      $(".video__btnSkip").remove();
+    }
+  });
+
+  // 영상 재생 종료
+  video.on("ended", () => {
+    isVideoPlay = false;
+    $(".controller__btnPlay").toggleClass("pause", isVideoPlay);
+  });
 };
 
 const setBookmark = () => {
@@ -71,7 +102,6 @@ const setSkipBtn = () => {
 };
 
 const setQuizPage = () => {
-  $(".main__quizPage").html(quizPageUI());
   if (useQuizIntro) {
     setQuizIntro();
     return;
@@ -263,7 +293,7 @@ const setKeyControl = () => {
   $(".help__contentsWrap").removeClass("learningmap");
 };
 
-const setController = () => {
+const setController = (video) => {
   $("main").append(controllerUI(pageInfo[currentPage - 1]));
 
   // 동작

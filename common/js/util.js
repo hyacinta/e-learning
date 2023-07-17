@@ -16,6 +16,27 @@ const checkDevice = () => {
   return mobileRegex.some((mobile) => userAgent.match(mobile)) ? "m" : "p";
 };
 
+// 시간 형식 변경
+const convertSecToMin = (playTime) => {
+  const min = Math.floor(playTime / 60);
+  const sec = Math.floor(playTime - min * 60);
+  return itostr(min) + ":" + itostr(sec);
+};
+const convertMinToSec = (playTime) => {
+  const temp = playTime.split(":");
+  const min = temp[0] * 60;
+  const sec = temp[1] * 1;
+  return min + sec;
+};
+
+// % 계산
+const getPerc = (numerator, denominator) => (numerator * 100) / denominator;
+
+// progressBar update
+const updateProgress = (targetBlock, perc) => {
+  targetBlock.css("width", perc + "%");
+};
+
 // 현재 차시, 페이지 확인
 const getCurrentURL = (target) => {
   const url = this.location.href.split("/");
@@ -27,7 +48,7 @@ const getCurrentURL = (target) => {
 const makeVideoURL = (device, groupCode) =>
   `/common/media/${device === "m" ? "m/" : ""}${itostr(
     currentChapter
-  )}/${itostr(currentPage)}.mp4`;
+  )}/${itostr(currentPage)}.mov`;
 
 // 페이지 이동
 const movePage = (thisBtn) => {

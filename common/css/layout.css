@@ -147,11 +147,13 @@
 .video__btnSkip {
   position: absolute;
   right: 2.4rem;
-  bottom: 10.4rem;
   width: 10.4rem;
   height: 10.4rem;
   padding-top: 0.4rem;
   padding-left: 0.2rem;
+}
+.unLock main:hover .video__btnSkip, .video__btnSkip {
+  bottom: 11.2rem;
 }
 .unLock .video__btnSkip {
   bottom: 2.4rem;
@@ -269,6 +271,9 @@
   height: 2.4rem;
   margin-bottom: 0.4rem;
   padding: 0 0.4rem 0.1rem 2.2rem;
+}
+.controller__btnVolume {
+  margin-right: 0.4rem;
 }
 .controller__btnVolume::after {
   left: -1rem;

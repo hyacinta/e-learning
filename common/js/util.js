@@ -29,6 +29,22 @@ const convertMinToSec = (playTime) => {
   return min + sec;
 };
 
+// 영상 재생/일시정지 제어
+const operateVideo = (video, currentPlayTime) => {
+  isPopupOpen = false;
+  isVideoPlay = typeof currentPlayTime === "number" ? true : !isVideoPlay;
+  $(".controller__btnPlay").toggleClass("pause", !isVideoPlay);
+  video[0].currentTime =
+    typeof currentPlayTime === "number"
+      ? currentPlayTime
+      : video[0].currentTime;
+  if (isVideoPlay) {
+    video[0].play();
+    return;
+  }
+  video[0].pause();
+};
+
 // % 계산
 const getPerc = (numerator, denominator) => (numerator * 100) / denominator;
 

@@ -277,13 +277,17 @@ body {
 .playRate__btnChangeRate, .playRate__btnChangeRate:disabled {
   font-family: var(--regularFont);
   font-size: var(--body);
-  font-weight: --fontBold;
+  font-weight: var(--fontBold);
   background-image: url("../images/controller/icon__x.png");
+  background-position-x: left;
 }
 .playRate__list {
   background-color: var(--dimd);
   backdrop-filter: var(--blur);
   border-radius: 0.8rem;
+}
+.playRate__list::before {
+  border-top-color: var(--dimd);
 }
 .controller__btnVolume::after {
   content: "음소거";

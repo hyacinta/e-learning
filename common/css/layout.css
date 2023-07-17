@@ -245,6 +245,9 @@
 .controller__playRate {
   position: relative;
 }
+.controller__playRate.open .playRate__btnOpen::before, .controller__playRate.open .playRate__btnOpen::after {
+  display: none;
+}
 .playRate__btnOpen {
   position: relative;
   height: 4rem;
@@ -260,12 +263,18 @@
 .open .playRate__list {
   position: absolute;
   right: 0;
-  bottom: 4rem;
+  bottom: 4.2rem;
   left: 0;
   display: block;
   margin: auto;
   padding: 0.8rem 0.4rem 0.4rem 0.2rem;
   z-index: 10;
+}
+.playRate__list::before {
+  bottom: -1rem;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 .playRate__btnChangeRate {
   height: 2.4rem;
@@ -277,6 +286,10 @@
 }
 .controller__btnVolume::after {
   left: -1rem;
+}
+.controller__btnVolume.mute::after {
+  left: -2.5rem;
+  width: 9rem;
 }
 .volume__progress {
   width: 4rem;

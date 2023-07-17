@@ -153,8 +153,8 @@ const controllerUI = ({
     <button type="button" class="playRate__btnOpen" ${
       type !== "videoPage" ? "disabled" : ""
     }>1.0</button>
-    <ul class="playRate__list">
-      <li class="playRate__item flex--center"><button type="button" class="playRate__btnChangeRate" data-targetrate="1.0">1.0</button></li>
+    <ul class="playRate__list arrow--top">
+      <li class="playRate__item flex--center" style="display:none;"><button type="button" class="playRate__btnChangeRate" data-targetrate="1.0">1.0</button></li>
       <li class="playRate__item flex--center"><button type="button" class="playRate__btnChangeRate" data-targetrate="1.2">1.2</button></li>
       <li class="playRate__item flex--center"><button type="button" class="playRate__btnChangeRate" data-targetrate="1.5">1.5</button></li>
       <li class="playRate__item flex--center"><button type="button" class="playRate__btnChangeRate" data-targetrate="1.7">1.7</button></li>

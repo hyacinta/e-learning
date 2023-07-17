@@ -37,16 +37,16 @@ const setMain = ({ type, subType }) => {
       setQuizPage();
   }
 
-  setController(video);
+  setController(video, subType);
 };
 
 const setVideoPage = (type, video) => {
   switch (type) {
     case "video-i":
-      setSkipBtn();
+      setSkipBtn(video);
       break;
     case "video":
-      setBookmark();
+      setBookmark(video);
       break;
     default:
       break;
@@ -82,23 +82,37 @@ const setVideoPage = (type, video) => {
   });
 };
 
-const setBookmark = () => {
+const setBookmark = (video) => {
   $(".main__videoPage").append(bookMarkUI());
-  setBookmarkList();
 
   // 동작
+  $(".bookMark__btnOpen").on("click", function () {
+    $(".video__bookMark").toggleClass("open");
+    setBookmarkList(video);
+  });
 };
 
-const setBookmarkList = () => {
-  $(".bookMark__list").append(bookMarkListUI(bookMarkInfo));
+const setBookmarkList = (video) => {
+  $(".bookMark__list").html(bookMarkListUI(bookMarkInfo));
 
   // 동작
+  $(".bookMark__btnMoveTime").on("click", function () {
+    $(".video__bookMark").removeClass("open");
+    operateVideo(
+      video,
+      convertMinToSec(bookMarkInfo[$(this).attr("data-timesynk") - 1].synkTime)
+    );
+  });
 };
 
-const setSkipBtn = () => {
+const setSkipBtn = (video) => {
   $(".main__videoPage").append(skipBtnUI());
 
   // 동작
+  $(".video__btnSkip").on("click", function () {
+    operateVideo(video, introSkipTime);
+    $(".video__btnSkip").remove();
+  });
 };
 
 const setQuizPage = () => {
@@ -293,30 +307,74 @@ const setKeyControl = () => {
   $(".help__contentsWrap").removeClass("learningmap");
 };
 
-const setController = (video) => {
+const setController = (video, subType) => {
   $("main").append(controllerUI(pageInfo[currentPage - 1]));
 
-  // 동작
+  // 재생/일시정지
+  $(".controller__btnPlay").on("click", function () {
+    console.log("귤");
+    operateVideo(video);
+  });
+  // 영상 다시보기
+  $(".controller__btnReplay").on("click", function () {
+    operateVideo(video, 0);
+
+    if (subType === "video-i") {
+      setSkipBtn(video);
+    }
+  });
+  // 재생속도 팝업 열기/닫기
+  $(".playRate__btnOpen").on("click", function () {
+    $(".controller__playRate").toggleClass("open");
+  });
+  // 영상 재생속도 조절
+  $(".playRate__btnChangeRate").on("click", function () {
+    $(".playRate__btnOpen").html($(this).attr("data-targetrate"));
+    video[0].playbackRate = $(this).attr("data-targetrate");
+    $(".controller__playRate").removeClass("open");
+    $(".playRate__item").show();
+    $(this).parent().hide();
+  });
+  // 소리 켜기/끄기
+  $(".controller__btnVolume").on("click", function () {
+    video[0].muted = !video[0].muted;
+    $(".controller__btnVolume").toggleClass("mute", video[0].muted);
+    if (!video[0].muted) {
+      updateProgress(
+        $(".volume__progress .progress__bar"),
+        video[0].volume * 100
+      );
+      return;
+    }
+    updateProgress($(".volume__progress .progress__bar"), 0);
+  });
+  // index 열기/닫기
   $(".controller__btnIndex").on("click", function () {
     $(".nav").toggleClass("open");
   });
+  // help 열기/닫기
   $(".controller__btnInfo").on("click", function () {
     setHelp();
     $(".help").addClass("open");
   });
+  // 스크립트창 열기/닫기
   $(".controller__btnScript").on("click", function () {
     $(".script").toggleClass("open");
   });
+  // 영상 전체화면으로 보기
   $(".controller__btnFullscreen").on("click", function () {
     $("video").fullscreen().toggle();
   });
+  // 컨트롤러 잠금/잠금해제
   $(".controller__btnLock").on("click", function () {
     $(".wrap").toggleClass("unLock");
   });
+  // 이전 페이지 이동
   $(".controller__btnPrevPage").on("click", function (e) {
     e.preventDefault();
     movePage($(this).attr("class"));
   });
+  // 다음 페이지 이동
   $(".controller__btnNextPage").on("click", function (e) {
     e.preventDefault();
     movePage($(this).attr("class"));

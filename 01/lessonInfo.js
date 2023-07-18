@@ -45,7 +45,7 @@ const quizInfo = [
     oxQuestion: "아래의 설명이 맞으면 O, 틀리면 X를 선택하세요.",
     question:
       "앱 사용 빈도순으로 보았을 때, 앱을 효율적으로 관리하기 위한 정리 순서로 <em>아닌</em> 것은?",
-    additionalType: "code",
+    additionalType: null,
     additional: [],
     distractor: [],
     answer: ["X"],

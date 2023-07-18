@@ -146,7 +146,6 @@ const setQuizPaper = (currentQuiz) => {
 
   // 동작
   $(".select__btnSelect").on("click", function (e) {
-    $(".paper__alert").removeClass("active");
     $(this).parent().toggleClass("myAnswer");
 
     if ($(this).parent().hasClass("myAnswer")) {
@@ -172,6 +171,7 @@ const setQuizPaper = (currentQuiz) => {
 };
 
 const setQuizSolveBtn = ({ type, answer, explanation }) => {
+  $(".paper__alert").removeClass("active");
   $(".paper__select").after(quizSolveBtnUI());
   $(".select__btnAnswerCheck").on("click", function () {
     if (type === "ju") {
@@ -188,6 +188,7 @@ const setAnswerSheet = (currentQuiz) => {
 
   // 동작
   $(".answerSheet__btnNextStep").on("click", function () {
+    $(".quizPage__paper").remove();
     if (currentQuiz.id === quizInfo.length) {
       setQuizResult();
       return;

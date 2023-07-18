@@ -26,12 +26,17 @@ const quizInfo = [
     oxQuestion: "",
     question:
       "HTML5에서는 정보 구조를 명확히 할 수 있도록 '아웃라인 알고리즘'이라는 개념이 도입되어 기존에 암묵적으로 그리던 아웃라인을 명시적이고 의미론적으로 작성할 수 있게 되었다. 다음중 HTML5에서 새롭게 도입된 태그가 아닌 것을 고르시오.",
-    additionalType: "null",
+    additionalType: null,
     additional: [],
-    distractor: ["<section>", "<aside>", "<div>", "<article>"],
+    distractor: [
+      "&lt; section &gt;",
+      "&lt; aside &gt;",
+      "&lt; div &gt;",
+      "&lt; article &gt;",
+    ],
     answer: ["3"],
     explanation:
-      "<div> 태그는 기존에 존재하고 있는 태그로서 아무런 의미를 가지고 있지 않는다.",
+      "&lt; div &gt; 태그는 기존에 존재하고 있는 태그로서 아무런 의미를 가지고 있지 않는다.",
   },
   {
     id: 2,
@@ -39,12 +44,17 @@ const quizInfo = [
     oxQuestion: "",
     question:
       "HTML5.2에서 정의형 목록(dl)의 자식요소로 올 수 있는 요소가 아닌 것을 고르시오.",
-    additionalType: "null",
+    additionalType: null,
     additional: [],
-    distractor: ["<div>", "<dt>", "<dd>", "<a>"],
+    distractor: [
+      "&lt; div &gt;",
+      "&lt; dt &gt;",
+      "&lt; dd &gt;",
+      "&lt; a &gt;",
+    ],
     answer: ["4"],
     explanation:
-      "<dt>, <dd>의 경우 기존에도 <dl>의 자식요소로 올 수 있었으며, <div>의 경우에는 HTML5.2에서 <dt>, <dd>를 감싸서 사용할 수 있도록 <dl>의 자식요소로 사용할 수 있게 되었다. 단, <div>를 <dt>, <dd>를 묶기 위하여 사용할 경우 모든 <dt>, <dd>를 감싸야 하며, 일부는 감싸고, 일부는 감싸지 않는 식으로 사용할 수는 없다.",
+      "&lt; dt &gt;, &lt; dd &gt;의 경우 기존에도 &lt; dl &gt;의 자식요소로 올 수 있었으며, &lt; div &gt;의 경우에는 HTML5.2에서 &lt; dt &gt;, &lt; dd &gt;를 감싸서 사용할 수 있도록 &lt; dl &gt;의 자식요소로 사용할 수 있게 되었다. 단, &lt; div &gt;를 &lt; dt &gt;, &lt; dd &gt;를 묶기 위하여 사용할 경우 모든 &lt; dt &gt;, &lt; dd &gt;를 감싸야 하며, 일부는 감싸고, 일부는 감싸지 않는 식으로 사용할 수는 없다.",
   },
   {
     id: 3,
@@ -52,9 +62,15 @@ const quizInfo = [
     oxQuestion: "",
     question:
       "focus란 선택이 되거나 마우스 이벤트 등을 받은 상태를 의미하며, HTML의 태그들 중에는 특별한 속성을 부여하지 않아도 focus를 받을 수 있는 태그들이 존재한다. 이 중 focus를 기본 속성으로 갖는 태그를 모두 고르시오.",
-    additionalType: "null",
+    additionalType: null,
     additional: [],
-    distractor: ["<a>", "<button>", "<div>", "<input>", "<span>"],
+    distractor: [
+      "&lt; a &gt;",
+      "&lt; button &gt;",
+      "&lt; div &gt;",
+      "&lt; input &gt;",
+      "&lt; span &gt;",
+    ],
     answer: ["1", "2", "4"],
     explanation:
       "사용자와 상호작용을 하기 위한 interactive content의 경우에 특별한 속성을 부여하지 않아도 focus를 받을 수 있다.",
